@@ -1,26 +1,12 @@
-'use strict';
+"use strict";
 var firebase = require("firebase");
-const fbURL = `https://movie-list-bb8f4.firebaseio.com/`;
-var FbCreds = {
-    apiKey: "AIzaSyCdQwFnhT6W_VnKNdl5ESRwqXVXmHNjRQo",
-    authDomain: "movie-list-bb8f4.firebaseapp.com",
-    databaseURL: "https://movie-list-bb8f4.firebaseio.com",
-    projectId: "movie-list-bb8f4",
-    storageBucket: "movie-list-bb8f4.appspot.com",
-    messagingSenderId: "377715718874"
-};
-
-var config = {
-  apiKey: FbCreds.apiKey,
-  authDomain: FbCreds.authDomain,
-  databaseURL: FbCreds.databaseURL
-};
-
+var config = require('./private.js');
 firebase.initializeApp(config);
+
 
 var provider = new firebase.auth.GoogleAuthProvider();
 console.log("provider is", provider);
-
+var currentUser = null;
 
 firebase.getFBsettings = function(){
      console.log("getFBsettings", config);
@@ -39,7 +25,7 @@ function getMovieByUser(userId) {
     });
 }
 
-getMovieByUser(1).then((data) =>{
+getMovieByUser(0).then((data) =>{
     console.log("data", data);
 });
 function logInGoogle() {
@@ -54,13 +40,13 @@ function logOut(){
 firebase.auth().onAuthStateChanged(function(user){
     console.log("onAuthStateChanged", user);
     if (user){
-        // currentUser = user.uid;
+        currentUser = user.uid;
     }else{
-        // currentUser = null;
+        currentUser = null;
         console.log("NO USER LOGGED IN");
     }
 });
-
+logOut();
 logInGoogle();
 
 // firebase.auth().signInWithPopup(provider).then(function(result) {
