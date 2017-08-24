@@ -1,11 +1,12 @@
-'use strict';
+"use strict";
 var firebase = require("firebase");
 var config = require('./private.js');
 firebase.initializeApp(config);
 
+
 var provider = new firebase.auth.GoogleAuthProvider();
 console.log("provider is", provider);
-
+var currentUser = null;
 
 firebase.getFBsettings = function(){
      return config;
@@ -23,7 +24,7 @@ function getMovieByUser(userId) {
     });
 }
 
-getMovieByUser(1).then((data) =>{
+getMovieByUser(0).then((data) =>{
     console.log("data", data);
 });
 function logInGoogle() {
@@ -38,12 +39,12 @@ function logOut(){
 firebase.auth().onAuthStateChanged(function(user){
     console.log("onAuthStateChanged", user);
     if (user){
-        // currentUser = user.uid;
+        currentUser = user.uid;
     }else{
-        // currentUser = null;
+        currentUser = null;
         console.log("NO USER LOGGED IN");
     }
 });
-
+logOut();
 logInGoogle();
 
