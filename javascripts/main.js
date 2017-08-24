@@ -1,7 +1,7 @@
 "use strict";
 
 var logUser = require('./firebase.js');
-var template = require('./dombuilder');
+var requests = require('./requests.js');
 
 
 logUser.logOut();
@@ -9,6 +9,7 @@ $('#loginbutton').on("click",()=>{
 	logUser.logInGoogle();
 });
 
+<<<<<<< HEAD
 function initialSearch(searchInput) {
 	return new Promise((resolve,reject)=>{
       
@@ -34,3 +35,6 @@ $("#searchInput").on("input",()=>{
 
 module.exports ={initialSearch};
 
+=======
+requests.initialSearch();
+>>>>>>> aab6a84fbea92ff7b6eefd17deaa3ec956730f38
