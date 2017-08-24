@@ -1,49 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title></title>
-  <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Movie Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
 </head>
 <body>
-<div class="ui card">
-  <div class="content">
-    <div class="right floated meta">14h</div>
-    <img class="ui avatar image" src=""> Elliot
-  </div>TITLE
-  <div class="image">
-    <img>
+    <nav class="navbar navbar-light bg-faded justify-content-between">
+        <a class="navbar-brand">Movie Finder</a>
+        <form class="form-inline">
+            <button id="unwatched" class="btn btn-sm align-middle btn-outline-secondary" type="button">Show Unwatched</button>
+            <button id="watched" class="btn btn-sm align-middle btn-outline-secondary" type="button">Show Watched</button>
 
-  </div>
-  <div class="content">
-    <span class="right floated">
-      <i class="heart outline like icon"></i>
-      <i class="heart outline like icon"></i>
-      <i class="heart outline like icon"></i>
-      <i class="heart outline like icon"></i>
-      <i class="heart outline like icon"></i>
 
-      
-    </span>
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-success" type="button">Login | Register</button>
+        </form>
+    </nav>
 
-  </div>
-  <div class="extra content">
-    <div class="ui large transparent left icon input">
-
-      <input type="text" placeholder="Add Comment...">
+    <div id="cards" class="container">
+        <div class="row">
+            <div class="col-sm">
+                1 of 3
+            </div>
+            <div class="col-sm">
+                1 of 3
+            </div>
+            <div class="col-sm">
+                1 of 3
+            </div>
+            <div class="col-sm">
+                1 of 3
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                1 of 3
+            </div>
+            <div class="col-sm">
+                1 of 3
+            </div>
+            <div class="col-sm">
+                1 of 3
+            </div>
+            <div class="col-sm">
+                1 of 3
+            </div>
+        </div>
     </div>
-  </div>
-</div>
- 
-<script type="text/javascript" src="dist/app.js"></script>
+    <div id="footer" class="card-footer text-muted">
+        © 2017 Movie Finder
+
+    </div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="dist/app.js"></script>
 </body>
 </html>
-
-
 
