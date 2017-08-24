@@ -13,7 +13,6 @@ firebase.getFBsettings = function(){
 };
 
 function getMovieByUser(userId) {
-
     return new Promise((resolve,reject)=>{
             
         $.ajax({
@@ -45,6 +44,9 @@ firebase.auth().onAuthStateChanged(function(user){
         console.log("NO USER LOGGED IN");
     }
 });
+
 logOut();
 logInGoogle();
+
+module.exports = {logInGoogle,logOut};
 
