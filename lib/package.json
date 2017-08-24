@@ -10,12 +10,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-
     "@types/grunt": "^0.4.21",
     "@types/handlebars": "^4.0.35",
     "@types/jquery": "^3.2.11",
     "@types/lodash": "^4.14.72",
-    "bootstrap": "^4.0.0-beta",
     "browserify": "^14.0.0",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
@@ -32,6 +30,7 @@
     "matchdep": "^1.0.1"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-beta",
     "handlebars": "^4.0.6",
     "hbsfy": "^2.7.0"
   }
