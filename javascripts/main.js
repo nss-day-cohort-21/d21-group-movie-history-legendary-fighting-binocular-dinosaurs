@@ -2,6 +2,8 @@
 
 var logUser = require('./firebase.js');
 var template = require('./dombuilder');
+
+
 logUser.logOut();
 $('#loginbutton').on("click",()=>{
 	logUser.logInGoogle();
@@ -27,6 +29,8 @@ $("#searchInput").on("input",()=>{
 	});
 	
 });
+
+
 
 module.exports ={initialSearch};
 
