@@ -1,6 +1,7 @@
 "use strict";
 
 var logUser = require('./firebase.js');
+var template = require('./dombuilder');
 logUser.logOut();
 $('#loginbutton').on("click",()=>{
 	logUser.logInGoogle();
@@ -21,7 +22,9 @@ function initialSearch(searchInput) {
 
 $("#searchInput").on("input",()=>{
 	let search = $("#searchInput").val();
-	initialSearch(search);
+	initialSearch(search).then((data)=>{
+		template(data);
+	});
 	
 });
 
