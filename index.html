@@ -9,15 +9,15 @@
 <body>
     <nav class="navbar navbar-light bg-faded justify-content-between">
         <a class="navbar-brand">Movie Finder</a>
-        <form class="form-inline">
+        <!-- <form class="form-inline"> -->
             <button id="unwatched" class="btn btn-sm align-middle btn-outline-secondary" type="button">Show Unwatched</button>
             <button id="watched" class="btn btn-sm align-middle btn-outline-secondary" type="button">Show Watched</button>
 
 
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <input id="searchInput" class="form-control mr-sm-2" type="text" placeholder="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            <button class="btn btn-outline-success" type="button">Login | Register</button>
-        </form>
+            <button id="loginbutton" class="btn btn-outline-success" type="button">Login | Register</button>
+        <!-- </form> -->
     </nav>
 
     <div id="cards" class="container">
@@ -54,6 +54,7 @@
         © 2017 Movie Finder
 
     </div>
+
 
 
 
