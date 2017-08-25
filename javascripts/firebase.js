@@ -1,6 +1,7 @@
 "use strict";
 var firebase = require("firebase");
 var config = require('./private.js');
+var handlers = require('./event.js');
 firebase.initializeApp(config);
 
 
@@ -27,7 +28,6 @@ getMovieByUser(0).then((data) =>{
     console.log("data", data);
 });
 function logInGoogle() {
-    // console.log("provider", provider);
         
     return firebase.auth().signInWithPopup(provider);
 }
@@ -39,6 +39,8 @@ firebase.auth().onAuthStateChanged(function(user){
     console.log("onAuthStateChanged", user);
     if (user){
         currentUser = user.uid;
+        console.log(handlers);
+        handlers.buttonChanges();
     }else{
         currentUser = null;
         console.log("NO USER LOGGED IN");

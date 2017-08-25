@@ -19,7 +19,11 @@ function domBuilder(movie){
        console.log("obj from domBuilder", movieobj);
        movieobj.posterpath.forEach((item)=> {
         requests.posterSearch(item);
+        console.log("item", item);
+         $(".row").append(cards(item));
        });
+
+
       $(".row").html('');
       movieobj.id.forEach((item) => {
          console.log("item", item);

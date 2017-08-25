@@ -22,11 +22,11 @@ function posterSearch(poster_path) {
       
         $.ajax({
             url: `https://image.tmdb.org/t/p/w500${poster_path}`
-        }).done((songdata)=>{
+        }).done((moviedata)=>{
             //resolve(songdata);
 
-            console.log("songdata is", songdata);
-            resolve(songdata);
+            console.log("songdata is", moviedata);
+            resolve(moviedata);
                 
         });
     });   
