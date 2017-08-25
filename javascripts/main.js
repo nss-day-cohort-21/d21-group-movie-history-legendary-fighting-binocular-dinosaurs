@@ -8,4 +8,3 @@ $('#loginbutton').on("click",()=>{
 	logUser.logInGoogle();
 });
 
-requests.initialSearch();

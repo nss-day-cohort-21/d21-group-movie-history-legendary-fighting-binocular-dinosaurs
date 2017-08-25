@@ -1,7 +1,9 @@
 'use strict';
 
 var cards = require('../templates/cards.hbs');
-var requests = require('./requests.js');
+var requests = require("./requests.js");
+
+
 
 
 function domBuilder(movie){
@@ -15,16 +17,16 @@ function domBuilder(movie){
        movieobj.title.push(data.original_title);
        movieobj.id.push(data.id);
        movieobj.posterpath.push(data.poster_path);
-});
-       console.log("obj from domBuilder", movieobj);
-       movieobj.posterpath.forEach((item)=> {
-        requests.posterSearch(item);
-       });
+  });
+       console.log("obj from domBuilder", movie);
+     
       $(".row").html('');
-      movieobj.id.forEach((item) => {
-         console.log("item", item);
+      movie.forEach((item) => {
+         if (item.poster_path!==null) {
+            $(".row").append(cards(item));
+         }
 
-         $(".row").append(cards(item));
+         
 
       });
 
