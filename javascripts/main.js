@@ -11,14 +11,16 @@ $('#loginbutton').on("click",()=>{
 
 
 $(document).on("click",".col-sm",(e)=>{
-let myMovie = $(e.currentTarget).attr("movieid");
-    // console.log("myMovie", myMovie);
-    requests.singleMovieSearch(myMovie).then((item)=>{
-        let mymovieobj = item;
-        mymovieobj.uid = Firebase.currentUsers();
-        console.log("singlemovieOBJ", Object.keys(mymovieobj));
-        Firebase.pushMovieObjToFirebase(mymovieobj);
-            
-    });
+    if (Firebase.currentUsers()!== null) {
+    let myMovie = $(e.currentTarget).attr("movieid");
+        // console.log("myMovie", myMovie);
+        requests.singleMovieSearch(myMovie).then((item)=>{
+            let mymovieobj = item;
+            mymovieobj.uid = Firebase.currentUsers();
+            console.log("singlemovieOBJ", Object.keys(mymovieobj));
+            Firebase.pushMovieObjToFirebase(mymovieobj);
+                
+        });
+    }
 });
     
