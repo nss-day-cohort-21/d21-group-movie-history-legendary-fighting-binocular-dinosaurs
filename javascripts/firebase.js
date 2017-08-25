@@ -18,10 +18,27 @@ function getMovieByUser(userId) {
             
         $.ajax({
             url: `${firebase.getFBsettings().databaseURL}/.json?orderBy="uid"&equalTo=${userId}`
-        }).done((songdata)=>{
-            resolve(songdata);
+        }).done((movie)=>{
+            resolve(movie);
         });
     });
+}
+
+function pushMovieObjToFirebase(movieObj) {
+    // return new Promise((resolve,reject)=>{
+       console.log("what is movieobj rly", movieObj.cast);
+       let a = movieObj;
+                     
+        $.ajax({
+            url: `${firebase.getFBsettings().databaseURL}/.json`,
+            method: 'POST',
+            data: JSON.stringify(a)
+        }).done((response)=>{
+            console.log("firebase response is what", response);
+                
+            // resresponsemovie);
+        });
+    // });
 }
 
 getMovieByUser(0).then((data) =>{
@@ -55,4 +72,4 @@ function currentUsers() {
 }
 // logOut();
 // logInGoogle();
-module.exports = {logInGoogle,logOut,currentUsers};
+module.exports = {logInGoogle,logOut,currentUsers,pushMovieObjToFirebase,getMovieByUser};

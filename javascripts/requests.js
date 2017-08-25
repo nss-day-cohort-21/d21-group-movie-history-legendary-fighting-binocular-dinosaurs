@@ -33,8 +33,19 @@ function singleMovieSearch(movieid) {
     return new Promise((resolve,reject)=>{
         $.ajax({
             url:"https://api.themoviedb.org/3/movie/" +`${movieid}` + "?api_key=c93dee63a7012453634a328e5dd78eef"
-         }).done((url)=>{  
-            resolve(url);
+         }).done((movieObj)=>{ 
+            let mymovieObj = movieObj;
+            // console.log("movieObj", movieObj.id);
+                
+            castSearch(movieid).then((item)=>{
+
+                    // console.log("cast is who", item.cast);
+                    mymovieObj.cast = item.cast;
+                    resolve(mymovieObj);
+            });
+
+            // console.log("final myMovieobj", mymovieObj);
+                
                 
         });
     });
@@ -77,7 +88,7 @@ $("#searchInput").on("keydown",(e)=>{
 	
 
 
-module.exports =castSearch;
+module.exports ={castSearch,singleMovieSearch};
 
 
 
