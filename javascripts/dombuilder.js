@@ -1,7 +1,9 @@
 'use strict';
 
 var cards = require('../templates/cards.hbs');
-var requests = require('./requests.js');
+var request = require("./requests.js");
+
+
 
 
 function domBuilder(movie){
@@ -15,20 +17,24 @@ function domBuilder(movie){
        movieobj.title.push(data.original_title);
        movieobj.id.push(data.id);
        movieobj.posterpath.push(data.poster_path);
-});
-       console.log("obj from domBuilder", movieobj);
-       movieobj.posterpath.forEach((item)=> {
-        requests.posterSearch(item);
-        console.log("item", item);
-         $(".row").append(cards(item));
-       });
-
-
+  });
+       console.log("obj from domBuilder", movie);
       $(".row").html('');
-      movieobj.id.forEach((item) => {
-         console.log("item", item);
-
-         $(".row").append(cards(item));
+      movie.forEach((item,index) => {
+     console.log("castiss?", item.cast);
+       
+         if (item.poster_path!==null) {
+          
+          
+            
+            $(".row").append(cards(item));
+            console.log("domBuilder(items)", item);
+                   
+         }
+          // if (item.cast !==undefined) {
+            
+          // }
+         
 
       });
 

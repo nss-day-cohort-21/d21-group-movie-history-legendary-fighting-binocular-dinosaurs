@@ -1,3 +1,22 @@
-<div class="col-sm">
-    {{this}}
+<div class="col-sm" movieid="{{id}}">
+    {{original_title}}<img src='https://image.tmdb.org/t/p/w500{{poster_path}}'  width="200px" height="200px">
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+	  <div class="card">
+	    {{#each cast}}
+	    <div class="card-header" role="tab" id="headingOne">
+	      <h5 class="mb-0">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{credit_id}}" aria-expanded="true" aria-controls="collapseOne">
+	          {{this.name}} as {{character}}
+	        </a>
+	      </h5>
+	    </div>
+	    <div id="collapse{{credit_id}}" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+	      <div class="card-block">
+	        <a href="#">{{profile_path}}</a>
+	      </div>
+	    </div>
+    {{/each}}  
+    </div>
+    </div>
+
 </div>
