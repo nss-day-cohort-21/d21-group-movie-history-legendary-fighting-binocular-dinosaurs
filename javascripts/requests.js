@@ -74,6 +74,36 @@ $("#searchInput").on("keydown",(e)=>{
         });
     }
 });
+$("#searchBtn").click((e)=>{
+e.preventDefault();
+        let search = $("#searchInput").val();
+        initialSearch(search).then((data)=>{
+            carddata = data;
+            data.forEach((item,index)=>{
+    
+                    
+                castSearch(item.id).then((castid)=>{
+                    if (castid.cast.length>0) {
+                        carddata[index].cast = castid.cast;
+                    }   
+                    console.log("carddata from first", carddata[index].cast);
+                    if (carddata[index].cast!==undefined ) {
+                        console.log("got here!!!!!!");
+                            
+                        for (var i = 0; i<5;i++) {
+                            console.log("cast members", carddata[index].cast[i]);
+                              template(carddata);  
+                        }
+
+                    }
+                });
+                    
+                    
+            });
+                
+                
+        });
+    });
 	
 
 
