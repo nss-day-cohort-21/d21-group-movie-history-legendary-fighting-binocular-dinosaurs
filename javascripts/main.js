@@ -9,7 +9,7 @@ $('#loginbutton').on("click",()=>{
 });
 
 
-
+//send selected movie to firebase
 $(document).on("click",".col-sm",(e)=>{
     if (Firebase.currentUsers()!== null) {
     let myMovie = $(e.currentTarget).attr("movieid");
@@ -24,6 +24,27 @@ $(document).on("click",".col-sm",(e)=>{
     }
 });
 
+    
+//handler search bar displays
+$(document).on("click", "#watched", ()=>{
+	console.log("WATCHED");
+        $('#searchInput').hide();
+        $('#unwatchedSI').hide();
+        $('#watchedSI').css("display", "block");
+ });
+$(document).on("click", "#unwatched", ()=>{
+	console.log("UNWATCHED");
+        $('#watchedSI').hide();
+        $('#searchInput').hide();
+        $('#unwatchedSI').css("display", "block");
+ });
+
+$(document).on("click", "#untracked", ()=>{
+	console.log("UNWATCHED");
+        $('#watchedSI').hide();
+        $('#unwatchedSI').hide();
+        $('#searchInput').css("display", "block");
+ });
 
 
 
