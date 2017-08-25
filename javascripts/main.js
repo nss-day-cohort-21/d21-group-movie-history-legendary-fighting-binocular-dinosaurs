@@ -9,7 +9,7 @@ $('#loginbutton').on("click",()=>{
 });
 
 
-
+//send selected movie to firebase
 $(document).on("click",".col-sm",(e)=>{
     if (Firebase.currentUsers()!== null) {
     let myMovie = $(e.currentTarget).attr("movieid");
@@ -24,6 +24,7 @@ $(document).on("click",".col-sm",(e)=>{
     }
 });
     
+//handler search bar displays
 $(document).on("click", "#watched", ()=>{
 	console.log("WATCHED");
         $('#searchInput').hide();

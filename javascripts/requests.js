@@ -15,7 +15,7 @@ function initialSearch(searchInput) {
     });
 }
     
-
+//building search params
 function castSearch(movieid) {
         // console.log("posterpath", poster_path);
             
@@ -52,7 +52,7 @@ function singleMovieSearch(movieid) {
 }
 
 var carddata={};
-
+//default search bar
 $("#searchInput").on("keydown",(e)=>{
     if (e.keyCode == 13) {
         e.preventDefault();
@@ -85,30 +85,43 @@ $("#searchInput").on("keydown",(e)=>{
         });
     }
 });
-
+//watched search bar
 $("#watchedSI").on("keydown",(e)=>{
     if (e.keyCode == 13) {
         e.preventDefault();
         let search = $("#watchedSI").val();
-        firebase.getMovieByUser(firebase.currentUsers())
-        .then((item)=>{
-            console.log("item", item);
-        });
-    }
-});
+        firebase.getMovieByUser(firebase.currentUsers(search))
+        .then((data)=>{
+            carddata = data;
+            console.log("data", data);
+            let array = $.map(data, function(value, index) {
+                return [value];
+            });
+            console.log("array", array);
+            template(array);
 
+    }
+    );
+}});
+//unwatched search bar
 $("#unwatchedSI").on("keydown",(e)=>{
     if (e.keyCode == 13) {
         e.preventDefault();
         let search = $("#unwatchedSI").val();
-        firebase.getMovieByUser(firebase.currentUsers())
-        .then((item)=>{
-            console.log("item", item);
-        });
+        firebase.getMovieByUser(firebase.currentUsers(search))
+        .then((data)=>{
+            carddata = data;
+            console.log("data", data);
+            let array = $.map(data, function(value, index) {
+                return [value];
+            });
+            console.log("array", array);
+            template(array);
     }
-});
+    );
+}});
 
-module.exports ={castSearch,singleMovieSearch};
+module.exports ={castSearch, singleMovieSearch};
 
 
 

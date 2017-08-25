@@ -4,7 +4,7 @@ var config = require('./private.js');
 var handlers = require('./event.js');
 firebase.initializeApp(config);
 
-
+//get user firebase info
 var provider = new firebase.auth.GoogleAuthProvider();
 console.log("provider is", provider);
 var currentUser = null;

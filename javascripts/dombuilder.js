@@ -3,7 +3,7 @@
 var cards = require('../templates/cards.hbs');
 var request = require("./requests.js");
 
-
+//template to print to dom
 function domBuilder(movie){
     let movieobj = {
         title : [],
