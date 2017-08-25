@@ -24,3 +24,36 @@ $(document).on("click",".col-sm",(e)=>{
     }
 });
     
+$(document).on("click", "#watched", ()=>{
+	console.log("WATCHED");
+        $('#searchInput').hide();
+        $('#unwatchedSI').hide();
+        $('#watchedSI').css("display", "block");
+ });
+$(document).on("click", "#unwatched", ()=>{
+	console.log("UNWATCHED");
+        $('#watchedSI').hide();
+        $('#searchInput').hide();
+        $('#unwatchedSI').css("display", "block");
+ });
+
+$(document).on("click", "#untracked", ()=>{
+	console.log("UNWATCHED");
+        $('#watchedSI').hide();
+        $('#unwatchedSI').hide();
+        $('#searchInput').css("display", "block");
+ });
+
+
+
+
+
+
+
+
+
+
+
+
+
+

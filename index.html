@@ -10,10 +10,12 @@
     <nav class="navbar navbar-light bg-faded justify-content-between">
         <a class="navbar-brand">Movie Finder</a>
         <!-- <form class="form-inline"> -->
+            <button id="untracked" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Show Untracked</button>
             <button id="unwatched" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Show Unwatched</button>
             <button id="watched" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Show Watched</button>
             <input id="searchInput" class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input id="watchedSI" class="form-control mr-sm-2" type="text" placeholder="Watched Search" style="display: none;">
+            <input id="unwatchedSI" class="form-control mr-sm-2" type="text" placeholder="Unwatched Search" style="display: none;">
             <button id="loginbutton" class="btn btn-outline-success" type="button">Login | Register</button>
             <button id="logoutbutton" class="btn btn-outline-success" type="button" style="display: none;">Logout | It's cool, whatever</button>
         </form>

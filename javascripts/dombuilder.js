@@ -38,22 +38,6 @@ function domBuilder(movie){
 
 }
 
-  $("#watched").on("click", () => {
-    $("#cards").css("display","none");
-    $("#watchedList").css("display", "block");
-    $("#unwatchedList").css("display", "none");
-
-  });
-
-  $("#unwatched").on("click", () => {
-    $("#cards").css("display", "none");
-    $("#unwatchedList").css("display", "block");
-    $("#watchedList").css("display", "none");
-    
-  });
-
-
-
 
 
 module.exports = domBuilder;
