@@ -23,4 +23,8 @@ $(document).on("click",".col-sm",(e)=>{
         });
     }
 });
-    
+
+
+
+
+
