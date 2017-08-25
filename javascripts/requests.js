@@ -29,6 +29,16 @@ function castSearch(movieid) {
     });
 }
 
+function singleMovieSearch(movieid) {
+    return new Promise((resolve,reject)=>{
+        $.ajax({
+            url:"https://api.themoviedb.org/3/movie/" +`${movieid}` + "?api_key=c93dee63a7012453634a328e5dd78eef"
+         }).done((url)=>{  
+            resolve(url);
+                
+        });
+    });
+}
 
 var carddata={};
 

@@ -36,15 +36,23 @@ function logOut(){
     
     return firebase.auth().signOut();
 }
+
 firebase.auth().onAuthStateChanged(function(user){
     console.log("onAuthStateChanged", user);
     if (user){
         currentUser = user.uid;
+            
     }else{
         currentUser = null;
         console.log("NO USER LOGGED IN");
     }
+    
 });
+
+function currentUsers() {
+        // console.log("currentUser", currentUser);
+    return currentUser;
+}
 // logOut();
 // logInGoogle();
-module.exports = {logInGoogle,logOut};
+module.exports = {logInGoogle,logOut,currentUsers};
