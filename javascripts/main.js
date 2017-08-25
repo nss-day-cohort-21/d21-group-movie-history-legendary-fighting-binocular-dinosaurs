@@ -1,18 +1,24 @@
 "use strict";
-
-var logUser = require('./firebase.js');
+var Firebase = require('./firebase.js');
 var requests = require('./requests.js');
 
 
-logUser.logOut();
+Firebase.logOut();
 $('#loginbutton').on("click",()=>{
-	logUser.logInGoogle();
-    setTimeout(()=>{
-        console.log("current user is who", logUser.currentUsers());},10000);
-});
-$('.col-sm').on("click",(e)=>{
-    let myMovie = e.currentTarget.movieid;
-    console.log("myMovie", myMovie);
-        
+	Firebase.logInGoogle();
 });
 
+
+
+$(document).on("click",".col-sm",(e)=>{
+let myMovie = $(e.currentTarget).attr("movieid");
+    // console.log("myMovie", myMovie);
+    requests.singleMovieSearch(myMovie).then((item)=>{
+        let mymovieobj = item;
+        mymovieobj.uid = Firebase.currentUsers();
+        console.log("singlemovieOBJ", Object.keys(mymovieobj));
+        Firebase.pushMovieObjToFirebase(mymovieobj);
+            
+    });
+});
+    
