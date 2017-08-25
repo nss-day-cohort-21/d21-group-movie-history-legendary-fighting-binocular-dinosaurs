@@ -1,7 +1,7 @@
 "use strict";
 
 var template = require('./dombuilder');
-
+var firebase = require('./firebase.js');
 function initialSearch(searchInput) {
 	return new Promise((resolve,reject)=>{
       
@@ -15,7 +15,7 @@ function initialSearch(searchInput) {
     });
 }
     
-
+//building search params
 function castSearch(movieid) {
         // console.log("posterpath", poster_path);
             
@@ -52,7 +52,7 @@ function singleMovieSearch(movieid) {
 }
 
 var carddata={};
-
+//default search bar
 $("#searchInput").on("keydown",(e)=>{
     if (e.keyCode == 13) {
         e.preventDefault();
@@ -85,40 +85,43 @@ $("#searchInput").on("keydown",(e)=>{
         });
     }
 });
-$("#searchBtn").click((e)=>{
-e.preventDefault();
-        let search = $("#searchInput").val();
-        initialSearch(search).then((data)=>{
+//watched search bar
+$("#watchedSI").on("keydown",(e)=>{
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        let search = $("#watchedSI").val();
+        firebase.getMovieByUser(firebase.currentUsers(search))
+        .then((data)=>{
             carddata = data;
-            data.forEach((item,index)=>{
-    
-                    
-                castSearch(item.id).then((castid)=>{
-                    if (castid.cast.length>0) {
-                        carddata[index].cast = castid.cast;
-                    }   
-                    console.log("carddata from first", carddata[index].cast);
-                    if (carddata[index].cast!==undefined ) {
-                        console.log("got here!!!!!!");
-                            
-                        for (var i = 0; i<5;i++) {
-                            console.log("cast members", carddata[index].cast[i]);
-                              template(carddata);  
-                        }
-
-                    }
-                });
-                    
-                    
+            console.log("data", data);
+            let array = $.map(data, function(value, index) {
+                return [value];
             });
-                
-                
-        });
-    });
-	
+            console.log("array", array);
+            template(array);
 
+    }
+    );
+}});
+//unwatched search bar
+$("#unwatchedSI").on("keydown",(e)=>{
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        let search = $("#unwatchedSI").val();
+        firebase.getMovieByUser(firebase.currentUsers(search))
+        .then((data)=>{
+            carddata = data;
+            console.log("data", data);
+            let array = $.map(data, function(value, index) {
+                return [value];
+            });
+            console.log("array", array);
+            template(array);
+    }
+    );
+}});
 
-module.exports ={castSearch,singleMovieSearch};
+module.exports ={castSearch, singleMovieSearch};
 
 
 

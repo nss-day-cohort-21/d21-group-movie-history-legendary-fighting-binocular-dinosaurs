@@ -4,7 +4,7 @@ var config = require('./private.js');
 var handlers = require('./event.js');
 firebase.initializeApp(config);
 
-
+//get user firebase info
 var provider = new firebase.auth.GoogleAuthProvider();
 console.log("provider is", provider);
 var currentUser = null;
@@ -15,9 +15,9 @@ firebase.getFBsettings = function(){
 
 function getMovieByUser(userId) {
     return new Promise((resolve,reject)=>{
-            
+            console.log("user", userId);
         $.ajax({
-            url: `${firebase.getFBsettings().databaseURL}/.json?orderBy="uid"&equalTo=${userId}`
+            url: `${firebase.getFBsettings().databaseURL}/.json?orderBy="uid"&equalTo="${userId}"`
         }).done((movie)=>{
             resolve(movie);
         });
