@@ -56,11 +56,8 @@ firebase.auth().onAuthStateChanged(function(user){
     console.log("onAuthStateChanged", user);
     if (user){
         currentUser = user.uid;
-
-        console.log("Modal should be gone");
         handlers.addPhotoAfterLogin(user.photoURL);
         console.log(handlers);
-
         displayName = user.displayName;
         email = user.email;
         userDetails();
