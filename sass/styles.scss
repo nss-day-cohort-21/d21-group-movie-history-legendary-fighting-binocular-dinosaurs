@@ -39,6 +39,11 @@ body{
 	display: flex;
 	//flex-wrap: wrap;
 }
+.movie-date {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 .stars {
 	overflow: hidden;

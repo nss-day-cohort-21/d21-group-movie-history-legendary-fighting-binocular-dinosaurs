@@ -2,7 +2,7 @@
     <!--<h4 class="title">{{original_title}}</h4>-->
     <img class='poster' src='https://image.tmdb.org/t/p/w500{{poster_path}}'  width="200px" height="200px">
     <div class="stars" id="rateYo{{id}}"></div>
-    <div id="accordion" role="tablist" aria-multiselectable="false">	 
+    <div id="accordion" role="tablist" aria-multiselectable="false">
 	  <div class="card">
 	    {{#each cast}}
 	    <div class="card-header" role="tab" id="headingOne{{credit_id}}">
@@ -17,7 +17,8 @@
 	        <a href="#">{{profile_path}}</a>
 	      </div>
 	    </div>
-    {{/each}}  
+    {{/each}}
+    <h5 class="movie-date">{{release_date}}</h5>
     </div>
     </div>
 </div>
