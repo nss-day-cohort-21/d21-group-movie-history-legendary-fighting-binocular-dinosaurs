@@ -3,6 +3,7 @@
 var cards = require('../templates/cards.hbs');
 var request = require("./requests.js");
 
+
 //template to print to dom
 function domBuilder(movie){
     let movieobj = {
@@ -16,18 +17,23 @@ function domBuilder(movie){
        movieobj.id.push(data.id);
        movieobj.posterpath.push(data.poster_path);
   });
-       console.log("obj from domBuilder", movie);
+       // console.log("obj from domBuilder", movie);
       $(".row").html('');
       movie.forEach((item,index) => {
-     console.log("castiss?", item.cast);
+     // console.log("castiss?", item.cast);
        
          if (item.poster_path!==null) {
           
           
             
             $(".row").append(cards(item));
-            console.log("domBuilder(items)", item);
-                   
+          
+          // console.log("BIGASS ITEM", item.id);
+            let realid = item.id;
+            
+            
+
+
          }
           // if (item.cast !==undefined) {
             
@@ -37,7 +43,6 @@ function domBuilder(movie){
       });
 
 }
-
 
 
 module.exports = domBuilder;
