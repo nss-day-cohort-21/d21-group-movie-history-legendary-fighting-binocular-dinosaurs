@@ -7,19 +7,25 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <nav class="navbar navbar-light bg-faded justify-content-between">
+    <nav class="navbar navbar-light bg-faded justify-content-between navbar-toggleable-md">
+
+
         <a class="navbar-brand" href="#">
-            <img src="images/logo.png"  alt="">
-        <!-- <form class="form-inline"> -->
+
+            <img id="logo-image" src="images/logo.png"  alt="logo image">
+         <!--<form class="form-inline">-->
             <button id="untracked" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Show Untracked</button>
             <button id="unwatched" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Show Unwatched</button>
             <button id="watched" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Show Watched</button>
+            <button id="favorites" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Favorites</button>
+            <button id="profile-image-anchor"></button>
+
             <input id="searchInput" class="form-control mr-sm-2" type="text" placeholder="Search">
             <input id="watchedSI" class="form-control mr-sm-2" type="text" placeholder="Watched Search" style="display: none;">
             <input id="unwatchedSI" class="form-control mr-sm-2" type="text" placeholder="Unwatched Search" style="display: none;">
             <button id="loginbutton" class="btn btn-outline-success" type="button">Login | Register</button>
             <button id="logoutbutton" class="btn btn-outline-success" type="button" style="display: none;">Logout | It's cool, whatever</button>
-        </form>
+        <!--</form>-->
     </nav>
 
 

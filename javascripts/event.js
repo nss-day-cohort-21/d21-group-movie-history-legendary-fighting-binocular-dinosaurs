@@ -5,12 +5,15 @@ function buttonChanges(){
 	$('#unwatched').fadeIn(2000);
 	$('#watched').fadeIn(2000);
 	$('#untracked').fadeIn(2000);
+	$('#favorites').fadeIn(2000);
+	$('#profile-image-anchor').fadeIn(2000);
 	$("#loginbutton").css("display","none");
 	$('#logoutbutton').css("display", "block");
 	$(document).on("click", "#logoutbutton", ()=>{
 		$('#unwatched').hide();
 		$('#watched').hide();
 		$('#untracked').hide();
+        $('#favorites').hide();
 		$("#loginbutton").css("display","block");
 		$('#logoutbutton').css("display", "none");
 			 return fb.auth().signOut();
@@ -18,5 +21,11 @@ function buttonChanges(){
 
 }
 
+let addPhotoAfterLogin  = (photoURL) => {
+	$("#profile-image-anchor").append(
+		`<img src="${photoURL}" id="profile-img" class="flex-sm-fill">`
+	);
+};
 
-module.exports = {buttonChanges};
+
+module.exports = {buttonChanges, addPhotoAfterLogin};

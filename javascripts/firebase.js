@@ -58,6 +58,7 @@ firebase.auth().onAuthStateChanged(function(user){
     if (user){
         currentUser = user.uid;
         $("#loginModal").modal('hide');
+        handlers.addPhotoAfterLogin(user.photoURL);
         console.log(handlers);
         handlers.buttonChanges();
 
