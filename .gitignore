@@ -5,3 +5,5 @@ dist/
 .idea/
 .DS_Store
 javascripts/private.js
+lib/semantic
+lib/semantic.json
