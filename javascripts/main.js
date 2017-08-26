@@ -4,13 +4,21 @@ var requests = require('./requests.js');
 
 
 Firebase.logOut();
+
+
 $(window).on('load',function(){
     $('#loginModal').modal('show');
 });
 
-$('.modal-signin-btn').on("click",()=>{
+$('#modal-signin-btn').on("click",(e)=>{
+    e.preventDefault();
+    console.log('prefirebase');
     Firebase.logInGoogle();
+    console.log('postfirebase');
+    $("#loginModal").modal('hide');
+
 });
+
 $('#loginbutton').on("click",()=>{
 	Firebase.logInGoogle();
 });

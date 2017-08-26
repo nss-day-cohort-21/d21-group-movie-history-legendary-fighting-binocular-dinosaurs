@@ -49,7 +49,6 @@ function logInGoogle() {
     return firebase.auth().signInWithPopup(provider);
 }
 function logOut(){
-    
     return firebase.auth().signOut();
 }
 
@@ -57,7 +56,7 @@ firebase.auth().onAuthStateChanged(function(user){
     console.log("onAuthStateChanged", user);
     if (user){
         currentUser = user.uid;
-        $("#loginModal").modal('hide');
+        console.log("Modal should be gone");
         handlers.addPhotoAfterLogin(user.photoURL);
         console.log(handlers);
         handlers.buttonChanges();

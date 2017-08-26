@@ -14,6 +14,7 @@ function buttonChanges(){
 		$('#watched').hide();
 		$('#untracked').hide();
         $('#favorites').hide();
+        $('#profile-img').css("display", "none");
 		$("#loginbutton").css("display","block");
 		$('#logoutbutton').css("display", "none");
 			 return fb.auth().signOut();
@@ -21,11 +22,12 @@ function buttonChanges(){
 
 }
 
-let addPhotoAfterLogin  = (photoURL) => {
+function addPhotoAfterLogin (photoURL) {
 	$("#profile-image-anchor").append(
 		`<img src="${photoURL}" id="profile-img" class="flex-sm-fill">`
 	);
-};
+}
+
 
 
 module.exports = {buttonChanges, addPhotoAfterLogin};
