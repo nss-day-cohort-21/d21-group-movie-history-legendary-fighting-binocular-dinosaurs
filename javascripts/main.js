@@ -33,12 +33,15 @@ $(document).on("click",".col-sm",(e)=>{
         requests.singleMovieSearch(myMovie).then((item)=>{
             let mymovieobj = item;
             mymovieobj.uid = Firebase.currentUsers();
-            console.log("singlemovieOBJ", Object.keys(mymovieobj));
+            mymovieobj.name = Firebase.userDetails()[0];
+            mymovieobj.email = Firebase.userDetails()[1];
+            // console.log("singlemovieOBJ", Object.keys(mymovieobj));
             Firebase.pushMovieObjToFirebase(mymovieobj);
                 
         });
     }
 });
+
     
 //handler search bar displays
 $(document).on("click", "#watched", ()=>{
@@ -60,16 +63,6 @@ $(document).on("click", "#untracked", ()=>{
         $('#unwatchedSI').hide();
         $('#searchInput').css("display", "block");
  });
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -6,8 +6,10 @@ firebase.initializeApp(config);
 
 //get user firebase info
 var provider = new firebase.auth.GoogleAuthProvider();
-console.log("provider is", provider);
 var currentUser = null;
+var displayName;
+var email;
+var emailVerified;
 
 firebase.getFBsettings = function(){
      return config;
@@ -26,7 +28,7 @@ function getMovieByUser(userId) {
 
 function pushMovieObjToFirebase(movieObj) {
     // return new Promise((resolve,reject)=>{
-       console.log("what is movieobj rly", movieObj.cast);
+       // console.log("what is movieobj rly", movieObj.cast);
        let a = movieObj;
                      
         $.ajax({
@@ -34,16 +36,14 @@ function pushMovieObjToFirebase(movieObj) {
             method: 'POST',
             data: JSON.stringify(a)
         }).done((response)=>{
-            console.log("firebase response is what", response);
+            // console.log("firebase response is what", response);
                 
             // resresponsemovie);
         });
     // });
 }
 
-getMovieByUser(0).then((data) =>{
-    console.log("data", data);
-});
+
 function logInGoogle() {
         
     return firebase.auth().signInWithPopup(provider);
@@ -56,9 +56,16 @@ firebase.auth().onAuthStateChanged(function(user){
     console.log("onAuthStateChanged", user);
     if (user){
         currentUser = user.uid;
+
         console.log("Modal should be gone");
         handlers.addPhotoAfterLogin(user.photoURL);
         console.log(handlers);
+
+        displayName = user.displayName;
+        email = user.email;
+        userDetails();
+        // console.log(handlers);
+
         handlers.buttonChanges();
 
     }else{
@@ -72,6 +79,11 @@ function currentUsers() {
         // console.log("currentUser", currentUser);
     return currentUser;
 }
+function userDetails() {
+    // console.log("user details",[displayName,email]);
+        
+    return [displayName,email];
+}
 
-module.exports = {logInGoogle,logOut,currentUsers,pushMovieObjToFirebase,getMovieByUser};
+module.exports = {logInGoogle,logOut,currentUsers,pushMovieObjToFirebase,getMovieByUser,userDetails};
 

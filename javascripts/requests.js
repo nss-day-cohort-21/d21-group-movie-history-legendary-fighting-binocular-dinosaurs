@@ -9,7 +9,7 @@ function initialSearch(searchInput) {
             url: `https://api.themoviedb.org/3/search/movie?api_key=01fccab4977fb9e675b2a37846f08da4&language=en-US&query=${searchInput}&page=1&include_adult=false`,
         }).done((songdata)=>{
             resolve(songdata.results);
-            console.log("songdata is", songdata.results);
+            // console.log("songdata is", songdata.results);
             	
         });
     });
@@ -66,12 +66,12 @@ $("#searchInput").on("keydown",(e)=>{
                     if (castid.cast.length>0) {
                         carddata[index].cast = castid.cast;
                     }   
-                    console.log("carddata from first", carddata[index].cast);
+                    // console.log("carddata from first", carddata[index].cast);
                     if (carddata[index].cast!==undefined ) {
-                        console.log("got here!!!!!!");
+                        // console.log("got here!!!!!!");
                             
                         for (var i = 0; i<5;i++) {
-                            console.log("cast members", carddata[index].cast[i]);
+                            // console.log("cast members", carddata[index].cast[i]);
                               template(carddata);  
                         }
 
@@ -93,11 +93,11 @@ $("#watchedSI").on("keydown",(e)=>{
         firebase.getMovieByUser(firebase.currentUsers(search))
         .then((data)=>{
             carddata = data;
-            console.log("data", data);
+            // console.log("data", data);
             let array = $.map(data, function(value, index) {
                 return [value];
             });
-            console.log("array", array);
+            // console.log("array", array);
             template(array);
 
     }
@@ -111,11 +111,11 @@ $("#unwatchedSI").on("keydown",(e)=>{
         firebase.getMovieByUser(firebase.currentUsers(search))
         .then((data)=>{
             carddata = data;
-            console.log("data", data);
+            // console.log("data", data);
             let array = $.map(data, function(value, index) {
                 return [value];
             });
-            console.log("array", array);
+            // console.log("array", array);
             template(array);
     }
     );
