@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Movie Search</title>
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-    
+
+    <title>My Movie Finder</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,39 +13,46 @@
 
 </head>
 <body>
+    <nav class="navbar navbar-light bg-faded justify-content-between navbar-toggleable-md">
 
-    <nav class="navbar navbar-light bg-faded justify-content-between">
-        <a class="navbar-brand">Movie Finder</a>
-        <!-- <form class="form-inline"> -->
+
+        <a class="navbar-brand" href="#">
+
+            <img id="logo-image" src="images/logo.png"  alt="logo image">
+         <!--<form class="form-inline">-->
+
             <button id="untracked" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Show Untracked</button>
             <button id="unwatched" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Show Unwatched</button>
             <button id="watched" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Show Watched</button>
+            <button id="favorites" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Favorites</button>
+            <button id="profile-image-anchor"></button>
+
             <input id="searchInput" class="form-control mr-sm-2" type="text" placeholder="Search">
             <input id="watchedSI" class="form-control mr-sm-2" type="text" placeholder="Watched Search" style="display: none;">
             <input id="unwatchedSI" class="form-control mr-sm-2" type="text" placeholder="Unwatched Search" style="display: none;">
             <button id="loginbutton" class="btn btn-outline-success" type="button">Login | Register</button>
             <button id="logoutbutton" class="btn btn-outline-success" type="button" style="display: none;">Logout | It's cool, whatever</button>
-        </form>
+        <!--</form>-->
     </nav>
 
 
 
+    <!--<div id="cards" class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-sm">-->
+                <!--1 of 3-->
+            <!--</div>-->
+            <!--<div class="col-sm">-->
+                <!--1 of 3-->
+            <!--</div>-->
+            <!--<div class="col-sm">-->
+                <!--1 of 3-->
+            <!--</div>-->
+            <!--<div class="col-sm">-->
+                <!--1 of 3-->
+            <!--</div>-->
+        <!--</div>-->
 
-    <div id="cards" class="container">
-        <div class="row">
-            <div class="col-sm">
-                1 of 3
-            </div>
-            <div class="col-sm">
-                1 of 3
-            </div>
-            <div class="col-sm">
-                1 of 3
-            </div>
-            <div class="col-sm">
-                1 of 3
-            </div>
-        </div>
         
   <!--       <div class="row">
             <div class="col-sm">
@@ -64,6 +68,35 @@
                 1 of 3
             </div>
         </div>  -->
+    </div>
+
+    <!--login modal-->
+    <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="text-center"><img src="images/logo.png" class="img-circle"><br></h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <form class="form col-md-12 center-block">
+                        <!--<div class="form-group">-->
+                            <!--<input type="text" class="form-control input-lg" placeholder="Email">-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<input type="password" class="form-control input-lg" placeholder="Password">-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-lg btn-block modal-signin-btn">Sign In | Register</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="footer" class="card-footer text-muted">
         © 2017 Movie Finder

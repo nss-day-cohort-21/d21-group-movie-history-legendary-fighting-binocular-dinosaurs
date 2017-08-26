@@ -4,9 +4,17 @@ var requests = require('./requests.js');
 
 
 Firebase.logOut();
+$(window).on('load',function(){
+    $('#loginModal').modal('show');
+});
+
+$('.modal-signin-btn').on("click",()=>{
+    Firebase.logInGoogle();
+});
 $('#loginbutton').on("click",()=>{
 	Firebase.logInGoogle();
 });
+
 
 
 //send selected movie to firebase
