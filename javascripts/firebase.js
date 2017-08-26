@@ -49,7 +49,6 @@ function logInGoogle() {
     return firebase.auth().signInWithPopup(provider);
 }
 function logOut(){
-    
     return firebase.auth().signOut();
 }
 
@@ -57,11 +56,15 @@ firebase.auth().onAuthStateChanged(function(user){
     console.log("onAuthStateChanged", user);
     if (user){
         currentUser = user.uid;
+        handlers.addPhotoAfterLogin(user.photoURL);
+        console.log(handlers);
         displayName = user.displayName;
         email = user.email;
         userDetails();
         // console.log(handlers);
+
         handlers.buttonChanges();
+
     }else{
         currentUser = null;
         console.log("NO USER LOGGED IN");

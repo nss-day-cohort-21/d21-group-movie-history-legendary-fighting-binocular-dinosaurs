@@ -1,6 +1,7 @@
 <div class="col-sm" movieid="{{id}}">
-    <h1>{{original_title}}</h1><img src='https://image.tmdb.org/t/p/w500{{poster_path}}'  width="200px" height="200px"> 
-		<div id="rateYo{{id}}"></div>
+    <h4 class="title">{{original_title}}</h4>
+    <img class='poster' src='https://image.tmdb.org/t/p/w500{{poster_path}}'  width="200px" height="200px">
+    <div class="stars" id="rateYo{{id}}"></div>
     <div id="accordion" role="tablist" aria-multiselectable="false">	 
 	  <div class="card">
 	    {{#each cast}}
@@ -25,7 +26,8 @@
  
   $("#rateYo{{id}}").rateYo({
     numStars: 10,
-    rating:0
+    rating:0,
+    spacing: "5px"
   });
  
 });
