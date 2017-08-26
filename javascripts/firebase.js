@@ -57,8 +57,10 @@ firebase.auth().onAuthStateChanged(function(user){
     console.log("onAuthStateChanged", user);
     if (user){
         currentUser = user.uid;
+        $("#loginModal").modal('hide');
         console.log(handlers);
         handlers.buttonChanges();
+
     }else{
         currentUser = null;
         console.log("NO USER LOGGED IN");
