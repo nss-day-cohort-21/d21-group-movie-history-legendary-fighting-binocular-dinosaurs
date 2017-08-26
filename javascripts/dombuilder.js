@@ -28,7 +28,7 @@ function domBuilder(movie){
             
             $(".row").append(cards(item));
           
-          console.log("BIGASS ITEM", item.id);
+          // console.log("BIGASS ITEM", item.id);
             let realid = item.id;
             
             
