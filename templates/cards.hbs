@@ -6,7 +6,8 @@
                     <img data-toggle="collapse" href="#collapseExample" class='poster' src='https://image.tmdb.org/t/p/w500{{poster_path}}'  width="200px" height="200px">
                     <h5 class="movie-date">{{release_date}}</h5>
                 </a>
-                     <div class="stars" id="rateYo{{id}}"></div>
+                    <input class="addtowatchlist btn btn-success" movieid="{{id}}" value="Add To WatchList"></input>
+                     <div class="stars" id="rateYo{{id}}" movieid="{{id}}"></div>
             </h5>
         </div>
     </div>

@@ -26,12 +26,33 @@ $('#loginbutton').on("click",()=>{
 
 
 //send selected movie to firebase
-$(document).on("click",".col-sm",(e)=>{
+$(document).on("click",".addtowatchlist",(e)=>{
     if (Firebase.currentUsers()!== null) {
     let myMovie = $(e.currentTarget).attr("movieid");
         // console.log("myMovie", myMovie);
         requests.singleMovieSearch(myMovie).then((item)=>{
             let mymovieobj = item;
+            mymovieobj.uid = Firebase.currentUsers();
+            mymovieobj.name = Firebase.userDetails()[0];
+            mymovieobj.email = Firebase.userDetails()[1];
+            // console.log("singlemovieOBJ", Object.keys(mymovieobj));
+            Firebase.pushMovieObjToFirebase(mymovieobj);
+                
+        });
+    }
+});
+$(document).on("click",".stars",(e)=>{
+    let startarget =  e.currentTarget;
+    let rating = $(startarget).rateYo("rating")*2;
+        
+    if (Firebase.currentUsers()!== null) {
+    let myMovie = $(e.currentTarget).attr("movieid");
+        // console.log("myMovie", myMovie);
+        requests.singleMovieSearch(myMovie).then((item)=>{
+            let mymovieobj = item;
+            console.log("what is rating", rating);
+                
+            mymovieobj.starrating = rating;
             mymovieobj.uid = Firebase.currentUsers();
             mymovieobj.name = Firebase.userDetails()[0];
             mymovieobj.email = Firebase.userDetails()[1];
