@@ -17,6 +17,7 @@ function buttonChanges(){
         $('#profile-img').css("display", "none");
 		$("#loginbutton").css("display","block");
 		$('#logoutbutton').css("display", "none");
+		logoutSearchBar();
 			 return fb.auth().signOut();
 	});
 
@@ -27,7 +28,13 @@ function addPhotoAfterLogin (photoURL) {
 		`<img src="${photoURL}" id="profile-img" class="flex-sm-fill">`
 	);
 }
+function logoutSearchBar(){
+        $('#watchedSI').hide();
+        $('#unwatchedSI').hide();
+        $('#searchInput').css("display", "block");
+}
 
 
 
-module.exports = {buttonChanges, addPhotoAfterLogin};
+
+module.exports = {buttonChanges, addPhotoAfterLogin, logoutSearchBar};

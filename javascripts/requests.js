@@ -1,5 +1,16 @@
 "use strict";
 
+var options = {
+  shouldSort: true,
+  threshold: 0.05,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 32,
+  minMatchCharLength: 1,
+  keys: ["title"]
+};
+
+
 var template = require('./dombuilder');
 var firebase = require('./firebase.js');
 function initialSearch(searchInput) {
@@ -97,8 +108,9 @@ $("#watchedSI").on("keydown",(e)=>{
             let array = $.map(data, function(value, index) {
                 return [value];
             });
-            // console.log("array", array);
-            template(array);
+            var fuse = new Fuse(array, options);
+            let result = fuse.search(search);
+            template(result);
 
     }
     );
@@ -115,8 +127,9 @@ $("#unwatchedSI").on("keydown",(e)=>{
             let array = $.map(data, function(value, index) {
                 return [value];
             });
-            // console.log("array", array);
-            template(array);
+            var fuse = new Fuse(array, options);
+            let result = fuse.search(search);
+            template(result);
     }
     );
 }});
