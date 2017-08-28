@@ -3,12 +3,20 @@ body{
 	background-color: #202020;
 	color: #eebd08;
 }
+
+.row{
+  overflow-y: scroll;
+  height: 80vh;
+}
+
+
+
+
 #cards{
 	background-color: #7b1810;
 }
 
 .card{
-	background-color: #7b5a08 !important;
 	color: #eebd08;
 }
 
