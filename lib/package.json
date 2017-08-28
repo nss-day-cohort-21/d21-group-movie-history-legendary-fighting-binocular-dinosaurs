@@ -33,7 +33,6 @@
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
     "handlebars": "^4.0.6",
-    "hbsfy": "^2.7.0",
-    "semantic-ui": "^2.2.13"
+    "hbsfy": "^2.7.0"
   }
 }
