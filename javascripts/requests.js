@@ -20,16 +20,12 @@ function initialSearch(searchInput) {
             url: `https://api.themoviedb.org/3/search/movie?api_key=01fccab4977fb9e675b2a37846f08da4&language=en-US&query=${searchInput}&page=1&include_adult=false`,
         }).done((songdata)=>{
             resolve(songdata.results);
-            // console.log("songdata is", songdata.results);
-            	
         });
     });
 }
     
 //building search params
 function castSearch(movieid) {
-        // console.log("posterpath", poster_path);
-            
         return new Promise((resolve,reject)=>{
         $.ajax({
             url:"https://api.themoviedb.org/3/movie/" +`${movieid}` + "/credits?api_key=c93dee63a7012453634a328e5dd78eef"
@@ -46,21 +42,14 @@ function singleMovieSearch(movieid) {
             url:"https://api.themoviedb.org/3/movie/" +`${movieid}` + "?api_key=c93dee63a7012453634a328e5dd78eef"
          }).done((movieObj)=>{ 
             let mymovieObj = movieObj;
-            // console.log("movieObj", movieObj.id);
-                
             castSearch(movieid).then((item)=>{
-
-                    // console.log("cast is who", item.cast);
                     mymovieObj.cast = item.cast;
                     resolve(mymovieObj);
             });
-
-            // console.log("final myMovieobj", mymovieObj);
-                
-                
         });
     });
 }
+
 
 var carddata={};
 //default search bar
@@ -104,15 +93,16 @@ $("#watchedSI").on("keydown",(e)=>{
         firebase.getMovieByUser(firebase.currentUsers(search))
         .then((data)=>{
             carddata = data;
-            // console.log("data", data);
             let array = $.map(data, function(value, index) {
                 return [value];
             });
             var fuse = new Fuse(array, options);
             let result = fuse.search(search);
+            result.filter(()=>{
+                return array.star;
+            });
             template(result);
-
-    }
+        }
     );
 }});
 //unwatched search bar
@@ -123,14 +113,16 @@ $("#unwatchedSI").on("keydown",(e)=>{
         firebase.getMovieByUser(firebase.currentUsers(search))
         .then((data)=>{
             carddata = data;
-            // console.log("data", data);
             let array = $.map(data, function(value, index) {
                 return [value];
             });
             var fuse = new Fuse(array, options);
             let result = fuse.search(search);
+            result.filter(()=>{
+                return array.star == null;
+            });
             template(result);
-    }
+        }
     );
 }});
 
