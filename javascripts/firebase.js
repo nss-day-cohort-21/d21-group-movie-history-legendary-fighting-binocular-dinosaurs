@@ -19,7 +19,8 @@ function getMovieByUser(userId) {
     return new Promise((resolve,reject)=>{
             console.log("user", userId);
         $.ajax({
-            url: `${firebase.getFBsettings().databaseURL}/.json?orderBy="uid"&equalTo="${userId}"`
+            url: `${firebase.getFBsettings().databaseURL}/movies.json?orderBy="uid"&equalTo="${userId}"`
+
         }).done((movie)=>{
             resolve(movie);
         });
