@@ -29,13 +29,15 @@ $('#loginbutton').on("click",()=>{
 $(document).on("click",".addtowatchlist",(e)=>{
     if (Firebase.currentUsers()!== null) {
     let myMovie = $(e.currentTarget).attr("movieid");
-        // console.log("myMovie", myMovie);
+        console.log("myMovie", myMovie);
         requests.singleMovieSearch(myMovie).then((item)=>{
             let mymovieobj = item;
             mymovieobj.uid = Firebase.currentUsers();
             mymovieobj.name = Firebase.userDetails()[0];
             mymovieobj.email = Firebase.userDetails()[1];
             console.log("singlemovieOBJ", Object.keys(mymovieobj));
+
+          
             Firebase.pushMovieObjToFirebase(mymovieobj);
 
         });
@@ -102,6 +104,7 @@ $(document).on("click", "#watched", ()=>{
         $('#watchedSI').css("display", "block");
  });
 
+
  $(document).on("click", "#unwatched", (event)=>{
 	console.log("UNWATCHED");
     // on click we need to pass the active userID to getMovieByUser
@@ -118,11 +121,43 @@ $(document).on("click", "#watched", ()=>{
         $('#unwatchedSI').css("display", "block");
  });
 
+
+
+
+
+
+
+
+
 $(document).on("click", "#untracked", ()=>{
 	console.log("UNWATCHED");
         $('#watchedSI').hide();
         $('#unwatchedSI').hide();
         $('#searchInput').css("display", "block");
  });
+
+
+
+
+// Using the REST API
+// function loadMoviesToDOM() {
+//   console.log("starting loadMoviesToDom function");
+//   let currentUser = user.getUser();
+//   console.log("currentUser in loadMovies", currentUser);
+//   db.getMovies(currentUser)
+//   // db.getSongs()
+//   .then((movieData) => {
+//     //with users, this is already happening...
+//     //add the id to each song and then build the song list
+//     // var idArray = Object.keys(songData);
+//     // idArray.forEach((key) => {
+//     //   songData[key].id = key;
+//     // });
+//     // console.log("song object with id", songData);
+//     //now make the list with songData
+//     templates.populatePageAfterTracked(movieData);
+//     console.log("loadMoviesToDOM", movieData);
+//   });
+// }
 
 
