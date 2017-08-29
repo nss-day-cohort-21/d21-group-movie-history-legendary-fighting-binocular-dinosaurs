@@ -76,7 +76,7 @@ $("#searchInput").on("keydown",(e)=>{
 
                         for (var i = 0; i<5;i++) {
                             // console.log("cast members", carddata[index].cast[i]);
-                              template(carddata);
+                              template.domBuilder(carddata);
                         }
 
                     }

@@ -55,7 +55,6 @@ function deleteMovie(movieId) {
             console.log("url working?",`${firebase.getFBsettings().databaseURL}/movies/${movieId}.json`);
             resolve();
         });
-    });
 }
 
 function logInGoogle() {
