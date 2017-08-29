@@ -105,7 +105,7 @@ $("#watchedSI").on("keydown",(e)=>{
             result.filter(()=>{
                 return array.star;
             });
-            template(result);
+            template.domBuilder(result);
         }
     );
 }});
@@ -125,7 +125,7 @@ $("#unwatchedSI").on("keydown",(e)=>{
             result.filter(()=>{
                 return array.star == null;
             });
-            template(result);
+            template.domBuilder(result);
         }
     );
 }});

@@ -71,6 +71,7 @@ $(document).on("click",".addtowatchlist",(e)=>{
 $(document).on("click", ".deleteMovie", function(event) {
     let fbID = $(this).attr("data-delete-id");
             Firebase.deleteMovie($(this).attr("data-delete-id"));
+
 });
 
 
@@ -86,11 +87,13 @@ $(document).on("click", ".deleteMovie", function(event) {
 $(document).on("click",".stars",(e)=>{
     let startarget =  e.currentTarget;
     let rating = $(startarget).rateYo("rating")*2;
+    let fbID = $(startarget).attr("data-stars-id");
 
     if (Firebase.currentUsers()!== null) {
     let myMovieId = $(e.currentTarget).attr("movieid");
         // console.log("myMovieId", myMovieId);
-        requests.singleMovieSearch(myMovieId).then((item)=> {
+        requests.singleMovieSearch(myMovieId)
+        .then((item)=> {
             let mymovieobj = item;
             console.log("what is rating", rating);
 
@@ -100,8 +103,11 @@ $(document).on("click",".stars",(e)=>{
             mymovieobj.email = Firebase.userDetails()[1];
             // console.log("singlemovieOBJ", Object.keys(mymovieobj));
             console.log ("mymovieobj", mymovieobj);
-            // Firebase.editMovieAndPushToFB(mymovieobj, movieId);
-
+            console.log('fbID', fbID);
+            // console.log('$this', startarget);
+            return mymovieobj;
+        }).then((mymovieobj) => {
+            Firebase.editMovieAndPushToFB(mymovieobj, fbID);
         });
     }
 });
