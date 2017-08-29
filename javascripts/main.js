@@ -37,17 +37,13 @@ $(document).on("click",".addtowatchlist",(e)=>{
             mymovieobj.email = Firebase.userDetails()[1];
             console.log("singlemovieOBJ", Object.keys(mymovieobj));
 
-<<<<<<< HEAD
-
-=======
             var idArray = Object.keys(mymovieobj);
             // console.log ("idArray", idArray);
                 // idArray.forEach((key) => {
                  //   songData[key].id = key;
                 // });
                 // console.log("song object with id", songData);
-          
->>>>>>> origin
+
             Firebase.pushMovieObjToFirebase(mymovieobj);
 
         });
