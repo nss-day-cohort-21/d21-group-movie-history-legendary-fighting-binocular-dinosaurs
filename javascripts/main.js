@@ -35,35 +35,57 @@ $(document).on("click",".addtowatchlist",(e)=>{
             mymovieobj.uid = Firebase.currentUsers();
             mymovieobj.name = Firebase.userDetails()[0];
             mymovieobj.email = Firebase.userDetails()[1];
-            console.log("singlemovieOBJ", mymovieobj);
+            console.log("singlemovieOBJ", Object.keys(mymovieobj));
+
+          
             Firebase.pushMovieObjToFirebase(mymovieobj);
-                
+
         });
     }
 });
+
+//Delete movie card and from firebase *
+$(document).on("click", "#deleteMovie",(e) => {
+    if (Firebase.currentUsers()!== null) {
+        let myMovie = $(e.currentTarget).attr("movieid");
+
+        Firebase.deleteMovie(myMovie);//.then((res)=>{
+        //     debugger;
+            // let mymovieobj = item;
+            // mymovieobj.uid = Firebase.currentUsers();
+            // mymovieobj.name = Firebase.userDetails()[0];
+            // mymovieobj.email = Firebase.userDetails()[1];
+            // console.log("deletemovieRes", res);
+            // Firebase.deleteMovie(mymovieobj);
+
+        // });
+    }
+});
+
+
 $(document).on("click",".stars",(e)=>{
     let startarget =  e.currentTarget;
     let rating = $(startarget).rateYo("rating")*2;
-        
+
     if (Firebase.currentUsers()!== null) {
     let myMovie = $(e.currentTarget).attr("movieid");
         // console.log("myMovie", myMovie);
         requests.singleMovieSearch(myMovie).then((item)=>{
             let mymovieobj = item;
             console.log("what is rating", rating);
-                
+
             mymovieobj.starrating = rating;
             mymovieobj.uid = Firebase.currentUsers();
             mymovieobj.name = Firebase.userDetails()[0];
             mymovieobj.email = Firebase.userDetails()[1];
             // console.log("singlemovieOBJ", Object.keys(mymovieobj));
             Firebase.pushMovieObjToFirebase(mymovieobj);
-                
+
         });
     }
 });
 
-    
+
 //handler search bar displays
 $(document).on("click", "#watched", ()=>{
 	console.log("WATCHED");
@@ -73,8 +95,7 @@ $(document).on("click", "#watched", ()=>{
  });
 
 
-
-$(document).on("click", "#unwatched", (event)=>{
+ $(document).on("click", "#unwatched", (event)=>{
 	console.log("UNWATCHED");
     // on click we need to pass the active userID to getMovieByUser
     let userID = Firebase.currentUsers();

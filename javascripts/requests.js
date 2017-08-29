@@ -14,16 +14,17 @@ var options = {
 var template = require('./dombuilder');
 var firebase = require('./firebase.js');
 function initialSearch(searchInput) {
-	return new Promise((resolve,reject)=>{
-      
+	return new Promise((resolve,reject)=> {
+                        
         $.ajax({  
             url: `https://api.themoviedb.org/3/search/movie?api_key=dbe82c339d871418f3be9db2647bb249&language=en-US&query=${searchInput}&page=1&include_adult=false`,
+
         }).done((songdata)=>{
             resolve(songdata.results);
         });
     });
 }
-    
+
 //building search params
 function castSearch(movieid) {
         return new Promise((resolve,reject)=>{
@@ -31,7 +32,7 @@ function castSearch(movieid) {
             url:"https://api.themoviedb.org/3/movie/" +`${movieid}` + "/credits?api_key=dbe82c339d871418f3be9db2647bb249"
          }).done((url)=>{  
             resolve(url);
-                
+
         });
     });
 }
@@ -41,6 +42,7 @@ function singleMovieSearch(movieid) {
         $.ajax({
             url:"https://api.themoviedb.org/3/movie/" +`${movieid}` + "?api_key=dbe82c339d871418f3be9db2647bb249"
          }).done((movieObj)=>{ 
+
             let mymovieObj = movieObj;
             castSearch(movieid).then((item)=>{
                     mymovieObj.cast = item.cast;
@@ -60,28 +62,28 @@ $("#searchInput").on("keydown",(e)=>{
         initialSearch(search).then((data)=>{
             carddata = data;
             data.forEach((item,index)=>{
-    
-                    
+
+
                 castSearch(item.id).then((castid)=>{
                     if (castid.cast.length>0) {
                         carddata[index].cast = castid.cast;
-                    }   
+                    }
                     // console.log("carddata from first", carddata[index].cast);
                     if (carddata[index].cast!==undefined ) {
                         // console.log("got here!!!!!!");
-                            
+
                         for (var i = 0; i<5;i++) {
                             // console.log("cast members", carddata[index].cast[i]);
-                              template(carddata);  
+                              template(carddata);
                         }
 
                     }
                 });
-                    
-                    
+
+
             });
-                
-                
+
+
         });
     }
 });
