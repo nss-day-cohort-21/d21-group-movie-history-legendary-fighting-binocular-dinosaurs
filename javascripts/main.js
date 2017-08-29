@@ -37,7 +37,7 @@ $(document).on("click",".addtowatchlist",(e)=>{
             mymovieobj.email = Firebase.userDetails()[1];
             console.log("singlemovieOBJ", Object.keys(mymovieobj));
 
-          
+
             Firebase.pushMovieObjToFirebase(mymovieobj);
 
         });
@@ -72,6 +72,14 @@ $(document).on("click", "#deleteMovie", function(event) {
         });
 });
 
+// $(document).on("click", ".delete-btn", function () {
+//     console.log("clicked delete button", $(this).data("delete-id"));
+//     let songID = $(this).data("delete-id");
+//     db.deleteSong(songID)
+//     .then(() => {
+//       loadSongsToDOM();
+//     });
+//   });
 
 $(document).on("click",".stars",(e)=>{
     let startarget =  e.currentTarget;
