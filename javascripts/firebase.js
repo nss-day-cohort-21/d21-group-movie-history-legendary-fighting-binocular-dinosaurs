@@ -43,6 +43,19 @@ function pushMovieObjToFirebase(movieObj) {
     // });
 }
 
+// PUT - Update data to a specified resource.
+function editMovieAndPushToFB(songFormObj, movieId) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `${firebase.getFBsettings().databaseURL}/movies/${movieId}.json`,
+            type: 'PUT',
+            data: JSON.stringify(songFormObj)
+        }).done((data) => {
+            resolve(data);
+        });
+    });
+}
+
 function deleteMovie(movieId) {
     // debugger;
     return new Promise((resolve, reject) => {
@@ -96,5 +109,5 @@ function userDetails() {
     return [displayName,email];
 }
 
-module.exports = {logInGoogle,logOut,currentUsers,pushMovieObjToFirebase,getMovieByUser,userDetails, deleteMovie};
+module.exports = {logInGoogle, editMovieAndPushToFB, logOut,currentUsers,pushMovieObjToFirebase,getMovieByUser,userDetails, deleteMovie};
 

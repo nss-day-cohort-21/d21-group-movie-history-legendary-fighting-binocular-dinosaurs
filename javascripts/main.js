@@ -37,7 +37,17 @@ $(document).on("click",".addtowatchlist",(e)=>{
             mymovieobj.email = Firebase.userDetails()[1];
             console.log("singlemovieOBJ", Object.keys(mymovieobj));
 
+<<<<<<< HEAD
 
+=======
+            var idArray = Object.keys(mymovieobj);
+            // console.log ("idArray", idArray);
+                // idArray.forEach((key) => {
+                 //   songData[key].id = key;
+                // });
+                // console.log("song object with id", songData);
+          
+>>>>>>> origin
             Firebase.pushMovieObjToFirebase(mymovieobj);
 
         });
@@ -82,9 +92,9 @@ $(document).on("click",".stars",(e)=>{
     let rating = $(startarget).rateYo("rating")*2;
 
     if (Firebase.currentUsers()!== null) {
-    let myMovie = $(e.currentTarget).attr("movieid");
-        // console.log("myMovie", myMovie);
-        requests.singleMovieSearch(myMovie).then((item)=>{
+    let myMovieId = $(e.currentTarget).attr("movieid");
+        // console.log("myMovieId", myMovieId);
+        requests.singleMovieSearch(myMovieId).then((item)=> {
             let mymovieobj = item;
             console.log("what is rating", rating);
 
@@ -93,7 +103,8 @@ $(document).on("click",".stars",(e)=>{
             mymovieobj.name = Firebase.userDetails()[0];
             mymovieobj.email = Firebase.userDetails()[1];
             // console.log("singlemovieOBJ", Object.keys(mymovieobj));
-            Firebase.pushMovieObjToFirebase(mymovieobj);
+            console.log ("mymovieobj", mymovieobj);
+            // Firebase.editMovieAndPushToFB(mymovieobj, movieId);
 
         });
     }
