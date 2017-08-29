@@ -69,8 +69,8 @@ $(document).on("click",".addtowatchlist",(e)=>{
 // });
 
 $(document).on("click", ".deleteMovie", function(event) {
-    // let
-            // Firebase.deleteMovie(movies);
+    let fbID = $(this).attr("data-delete-id");
+            Firebase.deleteMovie($(this).attr("data-delete-id"));
 });
 
 
@@ -130,7 +130,7 @@ $(document).on("click", "#watched", ()=>{
             let moviesArray = [];
             Object.keys(movies).forEach((key)=>{
                 movies[key].fireBaseid = key;
-
+                moviesArray.push(movies[key]);
             });
             console.log("moviesArray:", moviesArray);
             ourDomBuilder.domBuilder(moviesArray);
