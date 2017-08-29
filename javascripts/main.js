@@ -1,7 +1,7 @@
 "use strict";
 var Firebase = require('./firebase.js');
 var requests = require('./requests.js');
-
+var ourDomBuilder = require('./dombuilder.js');
 
 Firebase.logOut();
 
@@ -48,7 +48,7 @@ $(document).on("click",".addtowatchlist",(e)=>{
 $(document).on("click", "#deleteMovie",(e) => {
     if (Firebase.currentUsers()!== null) {
         let myMovie = $(e.currentTarget).attr("movieid");
-
+        console.log ("myMovie", myMovie);
         Firebase.deleteMovie(myMovie);//.then((res)=>{
         //     debugger;
             // let mymovieobj = item;
@@ -96,19 +96,26 @@ $(document).on("click", "#watched", ()=>{
 
 
  $(document).on("click", "#unwatched", (event)=>{
-	console.log("UNWATCHED");
-    // on click we need to pass the active userID to getMovieByUser
-    let userID = Firebase.currentUsers();
-    Firebase.getMovieByUser(userID)
-        .then((movie) => {
-            console.log ("result", movie);
-        });
-    // console.log ("userID", userID);
-
-
+    console.log("UNWATCHED");
         $('#watchedSI').hide();
         $('#searchInput').hide();
         $('#unwatchedSI').css("display", "block");
+    // on click we need to pass the active userID to getMovieByUser
+    let userID = Firebase.currentUsers();
+    console.log ("userID", userID);
+    Firebase.getMovieByUser(userID)
+        .then((movies) => {
+            console.log ("result", movies);
+            let moviesArray = [];
+            Object.keys(movies).forEach((key)=>{
+                movies[key].fireBaseid = key; 
+                moviesArray.push(movies[key]);
+            });
+            console.log("moviesArray:", moviesArray);
+            ourDomBuilder.domBuilder(moviesArray);
+        });
+    // console.log ("userID", userID);
+
  });
 
 
