@@ -12,11 +12,14 @@ function domBuilder(movie){
         posterpath : []
     };
 
+// for (let i = 0; i < movie.length; i++) {
    movie.forEach((data)=>{
        movieobj.title.push(data.original_title);
        movieobj.id.push(data.id);
        movieobj.posterpath.push(data.poster_path);
   });
+
+// }
        // console.log("obj from domBuilder", movie);
       $(".row").html('');
       movie.forEach((item,index) => {
@@ -46,4 +49,4 @@ function domBuilder(movie){
 }
 
 
-module.exports = domBuilder;
+module.exports = {domBuilder};

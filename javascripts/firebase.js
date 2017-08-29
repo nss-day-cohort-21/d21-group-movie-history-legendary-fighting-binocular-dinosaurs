@@ -33,7 +33,7 @@ function pushMovieObjToFirebase(movieObj) {
        let a = movieObj;
 
         $.ajax({
-            url: `${firebase.getFBsettings().databaseURL}/.json`,
+            url: `${firebase.getFBsettings().databaseURL}/movies.json`,
             method: 'POST',
             data: JSON.stringify(a)
         }).done((response)=>{
@@ -47,7 +47,7 @@ function deleteMovie(movieId) {
     // debugger;
 
     $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/.json`,
+        url: `${firebase.getFBsettings().databaseURL}/movies.json`,
         method: 'DELETE',
         data: JSON.stringify(movieId)
     }).done((response) => {
