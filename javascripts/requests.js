@@ -20,9 +20,9 @@ function initialSearch(searchInput) {
             url: `https://api.themoviedb.org/3/search/movie?api_key=dbe82c339d871418f3be9db2647bb249&language=en-US&query=${searchInput}&page=1&include_adult=false`,
 
         }).done((songdata)=>{
-            debugger;
+            // debugger;
             resolve(songdata.results);
-            console.log('initalSearch: ', songdata.results);
+            // console.log('initalSearch: ', songdata.results);
         });
     });
 }

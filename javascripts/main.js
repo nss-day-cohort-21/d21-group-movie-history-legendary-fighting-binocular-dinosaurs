@@ -62,15 +62,11 @@ $(document).on("click",".addtowatchlist",(e)=>{
 //     }
 // });
 
-$(document).on("click", "#deleteMovie", function(event) {
-    console.log("clicked delete movie",  event.currentTarget.id);
-    let movieId =  event.currentTarget.id;
-    Firebase.deleteMovie(movieId)
-        .then(() => {
-            // loadMoviesToDOM();
-            console.log("you deleted movie", Firebase.deleteMovie);
-        });
+$(document).on("click", ".deleteMovie", function(event) {
+    // let
+            // Firebase.deleteMovie(movies);
 });
+
 
 // $(document).on("click", ".delete-btn", function () {
 //     console.log("clicked delete button", $(this).data("delete-id"));
@@ -127,7 +123,7 @@ $(document).on("click", "#watched", ()=>{
             let moviesArray = [];
             Object.keys(movies).forEach((key)=>{
                 movies[key].fireBaseid = key;
-                moviesArray.push(movies[key]);
+
             });
             console.log("moviesArray:", moviesArray);
             ourDomBuilder.domBuilder(moviesArray);
