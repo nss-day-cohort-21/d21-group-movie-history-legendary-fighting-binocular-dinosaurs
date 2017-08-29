@@ -15,12 +15,14 @@ var template = require('./dombuilder');
 var firebase = require('./firebase.js');
 function initialSearch(searchInput) {
 	return new Promise((resolve,reject)=> {
-                        
-        $.ajax({  
+
+        $.ajax({
             url: `https://api.themoviedb.org/3/search/movie?api_key=dbe82c339d871418f3be9db2647bb249&language=en-US&query=${searchInput}&page=1&include_adult=false`,
 
         }).done((songdata)=>{
+            // debugger;
             resolve(songdata.results);
+            // console.log('initalSearch: ', songdata.results);
         });
     });
 }
@@ -30,7 +32,7 @@ function castSearch(movieid) {
         return new Promise((resolve,reject)=>{
         $.ajax({
             url:"https://api.themoviedb.org/3/movie/" +`${movieid}` + "/credits?api_key=dbe82c339d871418f3be9db2647bb249"
-         }).done((url)=>{  
+         }).done((url)=>{
             resolve(url);
 
         });
@@ -41,7 +43,7 @@ function singleMovieSearch(movieid) {
     return new Promise((resolve,reject)=>{
         $.ajax({
             url:"https://api.themoviedb.org/3/movie/" +`${movieid}` + "?api_key=dbe82c339d871418f3be9db2647bb249"
-         }).done((movieObj)=>{ 
+         }).done((movieObj)=>{
 
             let mymovieObj = movieObj;
             castSearch(movieid).then((item)=>{

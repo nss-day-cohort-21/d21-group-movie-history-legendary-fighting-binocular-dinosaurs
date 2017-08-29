@@ -11,7 +11,7 @@ var displayName;
 var email;
 var emailVerified;
 
-firebase.getFBsettings = function(){
+firebase.getFBsettings = function() {
      return config;
 };
 
@@ -58,26 +58,28 @@ function editMovieAndPushToFB(songFormObj, movieId) {
 
 function deleteMovie(movieId) {
     // debugger;
-
-    $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/movies.json`,
-        method: 'DELETE',
-        data: JSON.stringify(movieId)
-    }).done((response) => {
-        console.log('deleteMovie response: ', response);
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `${firebase.getFBsettings().databaseURL}/movies/${movieId}.json`,
+            method: 'DELETE',
+            // data: JSON.stringify(movieId)
+        }).done(() => { //response
+            // console.log('deleteMovie response: ', response);
+            console.log("url working?", `${firebase.getFBsettings().databaseURL}/movies/${movieId}.json`);
+            resolve();
+        });
     });
 }
 
-
 function logInGoogle() {
-
     return firebase.auth().signInWithPopup(provider);
 }
-function logOut(){
+
+function logOut() {
     return firebase.auth().signOut();
 }
 
-firebase.auth().onAuthStateChanged(function(user){
+firebase.auth().onAuthStateChanged(function(user) {
     console.log("onAuthStateChanged", user);
     if (user){
         currentUser = user.uid;
@@ -90,7 +92,7 @@ firebase.auth().onAuthStateChanged(function(user){
 
         handlers.buttonChanges();
 
-    }else{
+    } else {
         currentUser = null;
         console.log("NO USER LOGGED IN");
     }
