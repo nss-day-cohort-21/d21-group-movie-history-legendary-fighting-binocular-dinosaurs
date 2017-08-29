@@ -21,24 +21,25 @@ function domBuilder(movie){
       $(".row").html('');
       movie.forEach((item,index) => {
      // console.log("castiss?", item.cast);
-       
+
          if (item.poster_path!==null) {
-          
-          
-            
+
+
+
             $(".row").append(cards(item));
-          
+
           // console.log("BIGASS ITEM", item.id);
             let realid = item.id;
-            
-            
+
+        //   delete songs
+        //   movieobj.id.
 
 
          }
           // if (item.cast !==undefined) {
-            
+
           // }
-         
+
 
       });
 
