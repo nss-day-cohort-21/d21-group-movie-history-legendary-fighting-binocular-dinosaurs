@@ -11,7 +11,7 @@ var displayName;
 var email;
 var emailVerified;
 
-firebase.getFBsettings = function(){
+firebase.getFBsettings = function() {
      return config;
 };
 
@@ -44,16 +44,17 @@ function pushMovieObjToFirebase(movieObj) {
 
 function deleteMovie(movieId) {
     // debugger;
-
-    $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/.json`,
-        method: 'DELETE',
-        data: JSON.stringify(movieId)
-    }).done((response) => {
-        console.log('deleteMovie response: ', response);
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `${firebase.getFBsettings().databaseURL}/.json`,
+            method: 'DELETE',
+            data: JSON.stringify(movieId)
+        }).done((response) => {
+            console.log('deleteMovie response: ', response);
+            resolve();
+        });
     });
 }
-
 
 function logInGoogle() {
 

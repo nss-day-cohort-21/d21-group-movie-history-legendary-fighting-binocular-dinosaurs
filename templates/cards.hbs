@@ -7,12 +7,13 @@
                     <img data-toggle="collapse" href="#collapseExample" class='poster' src='https://image.tmdb.org/t/p/w500{{poster_path}}'  width="200px" height="200px">
                 </a>
                     <h5 class="movie-date">Release Date: {{release_date}}</h5>
-                    <input class="addtowatchlist btn btn-success" movieid="{{id}}" value="Add To WatchList"></input>
-                    <button type="button" id="deleteMovie" class="btn btn-success" movieid="{{id}}">Delete Movie</button>
+                    <button type="button" class="addtowatchlist btn btn-success" id="watched--{{id}}" movieid="{{id}}"><a href="#">Add To WatchList</a></button>
+                    <button type="button" id="deleteMovie" class="btn btn-success" movieid="{{id}}"><a href="#">Delete Movie</a></button>
                         <div class="stars" id="rateYo{{id}}" movieid="{{id}}"></div>
+
             </h5>
         </div>
-        <button type="button" class="btn btn-success" movieid="{{id}}" data-toggle="collapse" data-parent="#accordion" href="#collapse{{id}}" aria-expanded="true" aria-controls="collapse{{id}}">More Info</button>
+        <button type="button" class="btn btn-success" movieid="{{id}}" data-toggle="collapse" data-parent="#accordion" href="#collapse{{id}}" aria-expanded="true" aria-controls="collapse{{id}}"><a href="#">More Info</button>
     </div>
 
     <div id="collapse{{id}}" class="collapse" role="tabpanel" aria-labelledby="heading{{id}}">
