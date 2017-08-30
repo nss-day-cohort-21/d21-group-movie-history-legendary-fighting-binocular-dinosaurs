@@ -56,39 +56,8 @@ $(document).on("click", ".addtowatchlist", (e) => {
     }
 });
 
-//Delete movie card and from firebase *
-// <<<<<<< HEAD
-// $(document).on("click", ".deleteMovie",(e) => {
-//     if (Firebase.currentUsers()!== null) {
-//         let myMovie = $(e.currentTarget).attr("movieid");
-//         console.log ("myMovie", myMovie);
-//         Firebase.deleteMovie(myMovie);//.then((res)=>{
-//     }
-// =======
-// $(document).on("click", "#deleteMovie",(e) => {
-//     if (Firebase.currentUsers()!== null) {
-//         let myMovie = $(e.currentTarget).attr("movieid");
-
-//         Firebase.deleteMovie(myMovie);//.then((res)=>{
-//         //     debugger;
-//             // let mymovieobj = item;
-//             // mymovieobj.uid = Firebase.currentUsers();
-//             // mymovieobj.name = Firebase.userDetails()[0];
-//             // mymovieobj.email = Firebase.userDetails()[1];
-//             // console.log("deletemovieRes", res);
-//             // Firebase.deleteMovie(mymovieobj);
-
-//         // });
-//     }
-// });
 
 $(document).on("click", ".deleteMovie", function(event) {
-
-// <<<<<<< HEAD
-//     let fbID = $(this).attr("data-delete-id");
-//             Firebase.deleteMovie($(this).attr("data-delete-id"));
-//             console.log ("THAT", $(this).attr("data-delete-id"));
-// =======
 
 
     let disableMovie = document.getElementById("disableMovie");
@@ -154,8 +123,8 @@ $(document).on("click",".stars",(e)=>{
             Firebase.editMovieAndPushToFB(mymovieobj, fbID);
         });
     } else {
-        // $("#id").hide();
-        // disableStars.disabled = true;
+        $("#id").hide();
+        disableStars.disabled = true;
         window.alert('Please log in to rate');
     }
 });
@@ -192,9 +161,6 @@ $(document).on("click", "#unwatched", (event) => {
     // console.log ("userID", userID);
 
 });
-
-
-
 
 
 $(document).on("click", "#untracked", () => {
