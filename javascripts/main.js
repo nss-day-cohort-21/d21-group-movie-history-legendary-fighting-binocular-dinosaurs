@@ -43,7 +43,7 @@ $(document).on("click",".addtowatchlist",(e)=>{
                  //   songData[key].id = key;
                 // });
                 // console.log("song object with id", songData);
-          
+
             Firebase.pushMovieObjToFirebase(mymovieobj);
 
         });
@@ -51,21 +51,34 @@ $(document).on("click",".addtowatchlist",(e)=>{
 });
 
 //Delete movie card and from firebase *
-$(document).on("click", ".deleteMovie",(e) => {
-    if (Firebase.currentUsers()!== null) {
-        let myMovie = $(e.currentTarget).attr("movieid");
-        console.log ("myMovie", myMovie);
-        Firebase.deleteMovie(myMovie);//.then((res)=>{
-        //     debugger;
-            // let mymovieobj = item;
-            // mymovieobj.uid = Firebase.currentUsers();
-            // mymovieobj.name = Firebase.userDetails()[0];
-            // mymovieobj.email = Firebase.userDetails()[1];
-            // console.log("deletemovieRes", res);
-            // Firebase.deleteMovie(mymovieobj);
+// <<<<<<< HEAD
+// $(document).on("click", ".deleteMovie",(e) => {
+//     if (Firebase.currentUsers()!== null) {
+//         let myMovie = $(e.currentTarget).attr("movieid");
+//         console.log ("myMovie", myMovie);
+//         Firebase.deleteMovie(myMovie);//.then((res)=>{
+//     }
+// =======
+// $(document).on("click", "#deleteMovie",(e) => {
+//     if (Firebase.currentUsers()!== null) {
+//         let myMovie = $(e.currentTarget).attr("movieid");
 
-        // });
-    }
+//         Firebase.deleteMovie(myMovie);//.then((res)=>{
+//         //     debugger;
+//             // let mymovieobj = item;
+//             // mymovieobj.uid = Firebase.currentUsers();
+//             // mymovieobj.name = Firebase.userDetails()[0];
+//             // mymovieobj.email = Firebase.userDetails()[1];
+//             // console.log("deletemovieRes", res);
+//             // Firebase.deleteMovie(mymovieobj);
+
+//         // });
+//     }
+// });
+
+$(document).on("click", ".deleteMovie", function(event) {
+    let fbID = $(this).attr("data-delete-id");
+            Firebase.deleteMovie($(this).attr("data-delete-id"));
 });
 
 // Remove song then reload the DOM w/out new song
@@ -79,14 +92,25 @@ $(document).on("click", ".delete-btn", function () {
 });
 
 
+// $(document).on("click", ".delete-btn", function () {
+//     console.log("clicked delete button", $(this).data("delete-id"));
+//     let songID = $(this).data("delete-id");
+//     db.deleteSong(songID)
+//     .then(() => {
+//       loadSongsToDOM();
+//     });
+//   });
+
 $(document).on("click",".stars",(e)=>{
     let startarget =  e.currentTarget;
     let rating = $(startarget).rateYo("rating")*2;
+    let fbID = $(startarget).attr("data-stars-id");
 
     if (Firebase.currentUsers()!== null) {
     let myMovieId = $(e.currentTarget).attr("movieid");
         // console.log("myMovieId", myMovieId);
-        requests.singleMovieSearch(myMovieId).then((item)=> {
+        requests.singleMovieSearch(myMovieId)
+        .then((item)=> {
             let mymovieobj = item;
             console.log("what is rating", rating);
 
@@ -96,8 +120,11 @@ $(document).on("click",".stars",(e)=>{
             mymovieobj.email = Firebase.userDetails()[1];
             // console.log("singlemovieOBJ", Object.keys(mymovieobj));
             console.log ("mymovieobj", mymovieobj);
-            // Firebase.editMovieAndPushToFB(mymovieobj, movieId);
-
+            console.log('fbID', fbID);
+            // console.log('$this', startarget);
+            return mymovieobj;
+        }).then((mymovieobj) => {
+            Firebase.editMovieAndPushToFB(mymovieobj, fbID);
         });
     }
 });
@@ -125,7 +152,7 @@ $(document).on("click", "#watched", ()=>{
             console.log ("result", movies);
             let moviesArray = [];
             Object.keys(movies).forEach((key)=>{
-                movies[key].fireBaseid = key; 
+                movies[key].fireBaseid = key;
                 moviesArray.push(movies[key]);
             });
             console.log("moviesArray:", moviesArray);

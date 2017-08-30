@@ -48,5 +48,4 @@ function domBuilder(movie){
 
 }
 
-
 module.exports = {domBuilder};

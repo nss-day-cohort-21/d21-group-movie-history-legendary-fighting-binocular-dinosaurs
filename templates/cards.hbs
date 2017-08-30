@@ -1,18 +1,18 @@
 {{!-- <div><input type="range" id="slideRange" value="100"></div> --}}
 <div class="col-sm">
     <div class="card">
-        <div class="card-header" role="tab" id="heading{{id}} data-delete-id="{{fireBaseid}}">
+        <div class="card-header" role="tab" id="heading{{id}}">
             <h5 class="mb-0">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapse{{id}}">
                     <img data-toggle="collapse" href="#collapseExample" class='poster' src='https://image.tmdb.org/t/p/w500{{poster_path}}'  width="200px" height="200px">
                 </a>
                     <h5 class="movie-date">Release Date: {{release_date}}</h5>
                     <button type="button" class="addtowatchlist btn btn-success" id="watched--{{id}}" movieid="{{id}}"><a href="#">Add To WatchList</a></button>
-                    <button type="button" id="deleteMovie" class="btn btn-success" movieid="{{id}}">Delete Movie</button>
-                        <div class="stars" id="rateYo{{id}}" movieid="{{id}}"></div>
-            </h5>
+                    <button type="button" class="deleteMovie btn btn-success" id="deleteMovie" data-delete-id="{{fireBaseid}}"><a href="#">Delete Movie</a></button>
+                        <div class="stars" id="rateYo{{id}}" movieid="{{id}}" data-stars-id="{{fireBaseid}}"></div>
+
         </div>
-        <button type="button" class="btn btn-success" movieid="{{id}}" data-toggle="collapse" data-parent="#accordion" href="#collapse{{id}}" aria-expanded="true" aria-controls="collapse{{id}}">More Info</button>
+        <button type="button" class="btn btn-success" movieid="{{id}}" data-toggle="collapse" data-parent="#accordion" href="#collapse{{id}}" aria-expanded="true" aria-controls="collapse{{id}}"><a href="#">More Info</button>
     </div>
 
     <div id="collapse{{id}}" class="collapse" role="tabpanel" aria-labelledby="heading{{id}}">
