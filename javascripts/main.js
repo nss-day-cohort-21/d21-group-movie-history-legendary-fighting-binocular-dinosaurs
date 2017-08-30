@@ -3,32 +3,38 @@ var Firebase = require('./firebase.js');
 var requests = require('./requests.js');
 var ourDomBuilder = require('./dombuilder.js');
 
+
+// This was the last groups modal for login, we decided to go without-BPW
+// $(window).on('load',function(){
+//     $('#loginModal').modal('show');
+// });
+
+// $('#modal-signin-btn').on("click",(e)=>{
+//     e.preventDefault();
+//     console.log('prefirebase');
+//     Firebase.logInGoogle();
+//     console.log('postfirebase');
+//     $("#loginModal").modal('hide');
+
+// });
+
+
+//call Login & Logout from firebase.js
+$('#loginbutton').on("click", () => {
+    Firebase.logInGoogle();
+});
+
+
 Firebase.logOut();
 
 
-$(window).on('load',function(){
-    $('#loginModal').modal('show');
-});
-
-$('#modal-signin-btn').on("click",(e)=>{
-    e.preventDefault();
-    console.log('prefirebase');
-    Firebase.logInGoogle();
-    console.log('postfirebase');
-    $("#loginModal").modal('hide');
-
-});
-
-$('#loginbutton').on("click",()=>{
-	Firebase.logInGoogle();
-});
-
 //send selected movie to firebase
-$(document).on("click",".addtowatchlist",(e)=>{
-    if (Firebase.currentUsers()!== null) {
+$(document).on("click", ".addtowatchlist", (e) => {
+    if (Firebase.currentUsers() !== null) {
+
         let myMovie = $(e.currentTarget).attr("movieid");
         console.log("myMovie", myMovie);
-        requests.singleMovieSearch(myMovie).then((item)=>{
+        requests.singleMovieSearch(myMovie).then((item) => {
             let mymovieobj = item;
             mymovieobj.uid = Firebase.currentUsers();
             mymovieobj.name = Firebase.userDetails()[0];
@@ -37,10 +43,10 @@ $(document).on("click",".addtowatchlist",(e)=>{
 
             var idArray = Object.keys(mymovieobj);
             // console.log ("idArray", idArray);
-                // idArray.forEach((key) => {
-                 //   songData[key].id = key;
-                // });
-                // console.log("song object with id", songData);
+            // idArray.forEach((key) => {
+            //   songData[key].id = key;
+            // });
+            // console.log("song object with id", songData);
 
             Firebase.pushMovieObjToFirebase(mymovieobj);
 
@@ -77,11 +83,14 @@ $(document).on("click",".addtowatchlist",(e)=>{
 // });
 
 $(document).on("click", ".deleteMovie", function(event) {
+
 // <<<<<<< HEAD
 //     let fbID = $(this).attr("data-delete-id");
 //             Firebase.deleteMovie($(this).attr("data-delete-id"));
 //             console.log ("THAT", $(this).attr("data-delete-id"));
 // =======
+
+
     let disableMovie = document.getElementById("disableMovie");
 
     if (Firebase.currentUsers() !== null) {
@@ -94,7 +103,6 @@ $(document).on("click", ".deleteMovie", function(event) {
         disableMovie.disabled = true;
         window.alert('Please log in to delete');
     }
-// >>>>>>> master
 });
 
 // Remove song then reload the DOM w/out new song
@@ -116,6 +124,7 @@ $(document).on("click", ".deleteMovie", function(event) {
 //       loadSongsToDOM();
 //     });
 //   });
+
 
 $(document).on("click",".stars",(e)=>{
     let disableStars = document.getElementById("rateYo");
@@ -153,27 +162,27 @@ $(document).on("click",".stars",(e)=>{
 
 
 //handler search bar displays
-$(document).on("click", "#watched", ()=>{
-	console.log("WATCHED");
-        $('#searchInput').hide();
-        $('#unwatchedSI').hide();
-        $('#watchedSI').css("display", "block");
- });
+$(document).on("click", "#watched", () => {
+    console.log("WATCHED");
+    $('#searchInput').hide();
+    $('#unwatchedSI').hide();
+    $('#watchedSI').css("display", "block");
+});
 
 
- $(document).on("click", "#unwatched", (event)=>{
+$(document).on("click", "#unwatched", (event) => {
     console.log("UNWATCHED");
-        $('#watchedSI').hide();
-        $('#searchInput').hide();
-        $('#unwatchedSI').css("display", "block");
+    $('#watchedSI').hide();
+    $('#searchInput').hide();
+    $('#unwatchedSI').css("display", "block");
     // on click we need to pass the active userID to getMovieByUser
     let userID = Firebase.currentUsers();
-    console.log ("userID", userID);
+    console.log("userID", userID);
     Firebase.getMovieByUser(userID)
         .then((movies) => {
-            console.log ("result", movies);
+            console.log("result", movies);
             let moviesArray = [];
-            Object.keys(movies).forEach((key)=>{
+            Object.keys(movies).forEach((key) => {
                 movies[key].fireBaseid = key;
                 moviesArray.push(movies[key]);
             });
@@ -182,24 +191,29 @@ $(document).on("click", "#watched", ()=>{
         });
     // console.log ("userID", userID);
 
- });
+});
 
 
 
 
 
+$(document).on("click", "#untracked", () => {
+    console.log("UNWATCHED");
+    $('#watchedSI').hide();
+    $('#unwatchedSI').hide();
+    $('#searchInput').css("display", "block");
+});
 
+//////////////////////////
+//slider
+/////////////////////////
 
-
-
-$(document).on("click", "#untracked", ()=>{
-	console.log("UNWATCHED");
-        $('#watchedSI').hide();
-        $('#unwatchedSI').hide();
-        $('#searchInput').css("display", "block");
- });
-
-
+// $('#stars').slider({
+//     formatter: function(value) {
+//         console.log("slider", value);
+//         return 'Current value: ' + value;
+//     }
+// });
 
 
 // Using the REST API
@@ -222,5 +236,3 @@ $(document).on("click", "#untracked", ()=>{
 //     console.log("loadMoviesToDOM", movieData);
 //   });
 // }
-
-
