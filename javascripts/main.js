@@ -24,12 +24,14 @@ $('#loginbutton').on("click", () => {
     Firebase.logInGoogle();
 });
 
+
 Firebase.logOut();
 
 
 //send selected movie to firebase
 $(document).on("click", ".addtowatchlist", (e) => {
     if (Firebase.currentUsers() !== null) {
+
         let myMovie = $(e.currentTarget).attr("movieid");
         console.log("myMovie", myMovie);
         requests.singleMovieSearch(myMovie).then((item) => {
@@ -49,6 +51,8 @@ $(document).on("click", ".addtowatchlist", (e) => {
             Firebase.pushMovieObjToFirebase(mymovieobj);
 
         });
+    } else {
+        window.alert('Please log in to add watchlist');
     }
 });
 
@@ -71,9 +75,19 @@ $(document).on("click", ".addtowatchlist", (e) => {
 // });
 
 $(document).on("click", ".deleteMovie", function(event) {
-    let fbID = $(this).attr("data-delete-id");
-    Firebase.deleteMovie($(this).attr("data-delete-id"));
 
+    let disableMovie = document.getElementById("disableMovie");
+
+    if (Firebase.currentUsers() !== null) {
+        // debugger;
+        disableMovie.disabled = false;
+        let fbID = $(this).attr("data-delete-id");
+        Firebase.deleteMovie($(this).attr("data-delete-id"));
+    } else {
+        $("#fireBaseid").hide();
+        disableMovie.disabled = true;
+        window.alert('Please log in to delete');
+    }
 });
 
 
@@ -86,31 +100,38 @@ $(document).on("click", ".deleteMovie", function(event) {
 //     });
 //   });
 
-$(document).on("click", ".stars", (e) => {
-    let startarget = e.currentTarget;
-    let rating = $(startarget).rateYo("rating") * 2;
+
+$(document).on("click",".stars",(e)=>{
+    let disableStars = document.getElementById("rateYo");
+    let startarget =  e.currentTarget;
+    let rating = $(startarget).rateYo("rating")*2;
     let fbID = $(startarget).attr("data-stars-id");
 
-    if (Firebase.currentUsers() !== null) {
+    if (Firebase.currentUsers()!== null) {
+        // disableStars.disabled = false;
         let myMovieId = $(e.currentTarget).attr("movieid");
         // console.log("myMovieId", myMovieId);
         requests.singleMovieSearch(myMovieId)
-            .then((item) => {
-                let mymovieobj = item;
-                console.log("what is rating", rating);
+        .then((item)=> {
+            let mymovieobj = item;
+            console.log("what is rating", rating);
 
-                mymovieobj.starrating = rating;
-                mymovieobj.uid = Firebase.currentUsers();
-                mymovieobj.name = Firebase.userDetails()[0];
-                mymovieobj.email = Firebase.userDetails()[1];
-                // console.log("singlemovieOBJ", Object.keys(mymovieobj));
-                console.log("mymovieobj", mymovieobj);
-                console.log('fbID', fbID);
-                // console.log('$this', startarget);
-                return mymovieobj;
-            }).then((mymovieobj) => {
-                Firebase.editMovieAndPushToFB(mymovieobj, fbID);
-            });
+            mymovieobj.starrating = rating;
+            mymovieobj.uid = Firebase.currentUsers();
+            mymovieobj.name = Firebase.userDetails()[0];
+            mymovieobj.email = Firebase.userDetails()[1];
+            // console.log("singlemovieOBJ", Object.keys(mymovieobj));
+            console.log ("mymovieobj", mymovieobj);
+            console.log('fbID', fbID);
+            // console.log('$this', startarget);
+            return mymovieobj;
+        }).then((mymovieobj) => {
+            Firebase.editMovieAndPushToFB(mymovieobj, fbID);
+        });
+    } else {
+        $("#id").hide();
+        // disableStars.disabled = true;
+        window.alert('Please log in to rate');
     }
 });
 
