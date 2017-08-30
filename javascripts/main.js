@@ -79,17 +79,18 @@ $(document).on("click",".addtowatchlist",(e)=>{
 $(document).on("click", ".deleteMovie", function(event) {
     let fbID = $(this).attr("data-delete-id");
             Firebase.deleteMovie($(this).attr("data-delete-id"));
+            console.log ("THAT", $(this).attr("data-delete-id"));
 });
 
 // Remove song then reload the DOM w/out new song
-$(document).on("click", ".delete-btn", function () {
-  console.log("clicked delete song", $(this).data("delete-id"));
-  let songID = $(this).data("delete-id");
-  db.deleteSong(songID)
-  .then(() => {
-     loadSongsToDOM();
-  });
-});
+// $(document).on("click", ".delete-btn", function () {
+//   console.log("clicked delete song", $(this).data("delete-id"));
+//   let songID = $(this).data("delete-id");
+//   db.deleteSong(songID)
+//   .then(() => {
+//      loadSongsToDOM();
+//   });
+// });
 
 
 // $(document).on("click", ".delete-btn", function () {
