@@ -51,7 +51,7 @@ $(document).on("click",".addtowatchlist",(e)=>{
 });
 
 //Delete movie card and from firebase *
-$(document).on("click", "#deleteMovie",(e) => {
+$(document).on("click", ".deleteMovie",(e) => {
     if (Firebase.currentUsers()!== null) {
         let myMovie = $(e.currentTarget).attr("movieid");
         console.log ("myMovie", myMovie);
@@ -66,6 +66,16 @@ $(document).on("click", "#deleteMovie",(e) => {
 
         // });
     }
+});
+
+// Remove song then reload the DOM w/out new song
+$(document).on("click", ".delete-btn", function () {
+  console.log("clicked delete song", $(this).data("delete-id"));
+  let songID = $(this).data("delete-id");
+  db.deleteSong(songID)
+  .then(() => {
+     loadSongsToDOM();
+  });
 });
 
 

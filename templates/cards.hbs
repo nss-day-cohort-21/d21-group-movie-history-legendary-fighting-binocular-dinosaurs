@@ -38,9 +38,9 @@
 <script>
 $(function () {
 
-  $("#rateYo{{id}}").rateYo({
+  $("#rateYo{{id}}").rateYo((userRating){
     numStars: 10,
-    rating:0,
+    rating:userRating,
     spacing: "5px",
     fullStar: true
   });
