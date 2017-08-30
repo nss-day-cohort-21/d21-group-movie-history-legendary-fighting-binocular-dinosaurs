@@ -140,6 +140,8 @@
         
         button {
             outline: 0;
+            padding: 3px;
+            margin: 5px 1px 5px 1px;
         }
         
         .panel .btn i,
@@ -238,11 +240,21 @@
         nav.breadcrumb {
             background-color: #7b1810;
             width: fit-content;
-            margin-left: 5%;
+            margin-left: 3%;
         }
         
         a:hover {
             font-weight: bolder;
+            font-size: 1.1em;
+        }
+        
+        a {
+            color: black;
+            letter-spacing: .2em;
+        }
+        
+        a.breadcrumb-item {
+            color: black;
         }
         
         ////////////////

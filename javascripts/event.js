@@ -12,7 +12,7 @@ function buttonChanges() {
     $("#loginbutton").css("display", "none");
     $('#logoutbutton').css("display", "block");
     $(document).on("click", "#logoutbutton", () => {
-        // $('.breadcrumb').hide();
+        $('.breadcrumb').hide();
         $('#unwatched').hide();
         $('#watched').hide();
         $('#untracked').hide();
@@ -20,7 +20,7 @@ function buttonChanges() {
         $('#profile-img').css("display", "none");
         $("#loginbutton").css("display", "block");
         $('#logoutbutton').css("display", "none");
-        // logoutSearchBar();
+        logoutSearchBar();
         return fb.auth().signOut();
     });
 
