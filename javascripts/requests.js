@@ -81,11 +81,11 @@ $("#searchInput").on("keydown",(e)=>{
                             // console.log("cast members", carddata[index].cast[i]);
                             template.domBuilder(carddata);
 
-                            if (firebase.currentUsers()!== null) {
-                                $('.stars').show();
-                            } else {
-                                $('.stars').hide();
-                            }
+                            // if (firebase.currentUsers()!== null) {
+                            //     $('.stars').show();
+                            // } else {
+                            //     $('.stars').hide();
+                            // }
                         }
 
                     }

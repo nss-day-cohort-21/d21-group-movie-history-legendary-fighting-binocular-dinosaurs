@@ -154,7 +154,7 @@ $(document).on("click",".stars",(e)=>{
             Firebase.editMovieAndPushToFB(mymovieobj, fbID);
         });
     } else {
-        $("#id").hide();
+        // $("#id").hide();
         // disableStars.disabled = true;
         window.alert('Please log in to rate');
     }
