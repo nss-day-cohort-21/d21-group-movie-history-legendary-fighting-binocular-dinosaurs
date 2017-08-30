@@ -1,12 +1,12 @@
 'use strict';
 let firebase = require('firebase');
 var FbCreds = {
-    apiKey: "AIzaSyCdQwFnhT6W_VnKNdl5ESRwqXVXmHNjRQo",
-    authDomain: "movie-list-bb8f4.firebaseapp.com",
-    databaseURL: "https://movie-list-bb8f4.firebaseio.com",
-    projectId: "movie-list-bb8f4",
-    storageBucket: "movie-list-bb8f4.appspot.com",
-    messagingSenderId: "377715718874"
+    apiKey: "AIzaSyDp-kuGjJGUkOAwZyoLqqTs92x-N__B6Fc",
+    authDomain: "movie-history-d6e5f.firebaseapp.com",
+    databaseURL: "https://movie-history-d6e5f.firebaseio.com",
+    projectId: "movie-history-d6e5f",
+    storageBucket: "movie-history-d6e5f.appspot.com",
+    messagingSenderId: "174536537541"
 };
 
 var config = {

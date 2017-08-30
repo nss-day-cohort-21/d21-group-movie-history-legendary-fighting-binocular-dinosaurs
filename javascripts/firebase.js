@@ -11,7 +11,7 @@ var displayName;
 var email;
 var emailVerified;
 
-firebase.getFBsettings = function(){
+firebase.getFBsettings = function() {
      return config;
 };
 
@@ -19,7 +19,8 @@ function getMovieByUser(userId) {
     return new Promise((resolve,reject)=>{
             console.log("user", userId);
         $.ajax({
-            url: `${firebase.getFBsettings().databaseURL}/.json?orderBy="uid"&equalTo="${userId}"`
+            url: `${firebase.getFBsettings().databaseURL}/movies.json?orderBy="uid"&equalTo="${userId}"`
+
         }).done((movie)=>{
             resolve(movie);
         });
@@ -28,36 +29,62 @@ function getMovieByUser(userId) {
 
 function pushMovieObjToFirebase(movieObj) {
     // return new Promise((resolve,reject)=>{
-       // console.log("what is movieobj rly", movieObj.cast);
+    //    console.log("what is movieobj rly", movieObj.cast);
        let a = movieObj;
-                     
+
         $.ajax({
-            url: `${firebase.getFBsettings().databaseURL}/.json`,
+            url: `${firebase.getFBsettings().databaseURL}/movies.json`,
             method: 'POST',
             data: JSON.stringify(a)
         }).done((response)=>{
             // console.log("firebase response is what", response);
-                
             // resresponsemovie);
         });
     // });
 }
 
+// PUT - Update data to a specified resource.
+function editMovieAndPushToFB(songFormObj, movieId) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `${firebase.getFBsettings().databaseURL}/movies/${movieId}.json`,
+            type: 'PUT',
+            data: JSON.stringify(songFormObj)
+        }).done((data) => {
+            resolve(data);
+        });
+    });
+}
+
+function deleteMovie(movieId) {
+    // debugger;
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `${firebase.getFBsettings().databaseURL}/movies/${movieId}.json`,
+            method: 'DELETE',
+            // data: JSON.stringify(movieId)
+        }).done(() => { //response
+            // console.log('deleteMovie response: ', response);
+            console.log("url working?", `${firebase.getFBsettings().databaseURL}/movies/${movieId}.json`);
+            resolve();
+        });
+    });
+}
 
 function logInGoogle() {
-        
     return firebase.auth().signInWithPopup(provider);
 }
-function logOut(){
+
+function logOut() {
     return firebase.auth().signOut();
 }
 
-firebase.auth().onAuthStateChanged(function(user){
-    console.log("onAuthStateChanged", user);
+firebase.auth().onAuthStateChanged(function(user) {
+    // console.log("onAuthStateChanged", user);
     if (user){
         currentUser = user.uid;
         handlers.addPhotoAfterLogin(user.photoURL);
-        console.log(handlers);
+        // console.log('onAuthstateChange handlers: ', handlers);
         displayName = user.displayName;
         email = user.email;
         userDetails();
@@ -65,11 +92,11 @@ firebase.auth().onAuthStateChanged(function(user){
 
         handlers.buttonChanges();
 
-    }else{
+    } else {
         currentUser = null;
         console.log("NO USER LOGGED IN");
     }
-    
+
 });
 
 function currentUsers() {
@@ -78,9 +105,9 @@ function currentUsers() {
 }
 function userDetails() {
     // console.log("user details",[displayName,email]);
-        
+
     return [displayName,email];
 }
 
-module.exports = {logInGoogle,logOut,currentUsers,pushMovieObjToFirebase,getMovieByUser,userDetails};
+module.exports = {logInGoogle, editMovieAndPushToFB, logOut,currentUsers,pushMovieObjToFirebase,getMovieByUser,userDetails, deleteMovie};
 

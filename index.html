@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
     <title>My Movie Finder</title>
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
@@ -17,26 +14,40 @@
     <link rel="stylesheet" href="css/main.css">
 
 </head>
+
 <body>
     <nav class="navbar navbar-light bg-faded justify-content-between navbar-toggleable-md">
 
-
-        <a class="navbar-brand" href="#">
-            <img id="logo-image" src="images/logo.png"  alt="logo image"></a>
-         <!--<form class="form-inline">-->
+        <a class="navbar-brand" href="home">
+            <img id="logo-image" src="images/logo.png" alt="logo image"></a>
+        <button id="loginbutton" class="btn btn-outline-secondary" type="button">Login | Register</button>
+        <button id="logoutbutton" class="btn btn-outline-secondary" type="button" style="display: none;">Logout | It's cool, whatever</button>
+        <!-- the following 3 inputs are for the search text input-BPW -->
+        <input id="searchInput" class="form-control mr-sm-2" type="text" placeholder="Search">
+        <input id="watchedSI" class="form-control mr-sm-2" type="text" placeholder="Watched Search" style="display: none;">
+        <input id="unwatchedSI" class="form-control mr-sm-2" type="text" placeholder="Unwatched Search" style="display: none;">
+        <!--</form>-->
+        <!--<form class="form-inline">-->
         <div class="navigation-buttons">
             <button id="untracked" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Show Untracked</button>
             <button id="unwatched" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Show Unwatched</button>
             <button id="watched" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Show Watched</button>
-            <button id="favorites" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Favorites</button>
+            <!-- <button id="favorites" class="btn btn-sm align-middle btn-outline-secondary" type="button" style="display: none;">Favorites</button> -->
             <button id="profile-image-anchor"></button>
+
         </div>
-            <input id="searchInput" class="form-control mr-sm-2" type="text" placeholder="Search">
-            <input id="watchedSI" class="form-control mr-sm-2" type="text" placeholder="Watched Search" style="display: none;">
-            <input id="unwatchedSI" class="form-control mr-sm-2" type="text" placeholder="Unwatched Search" style="display: none;">
-            <button id="loginbutton" class="btn btn-outline-secondary" type="button">Login | Register</button>
-            <button id="logoutbutton" class="btn btn-outline-secondary" type="button" style="display: none;">Logout | It's cool, whatever</button>
-        <!--</form>-->
+
+
+
+    </nav>
+    <nav class="breadcrumb">
+        <span class="breadcrumb-item active"><a href="#home">My Movie Finder</a></span>
+        <a class="breadcrumb-item" href="#untracked">Untracked</a>
+        <a class="breadcrumb-item" href="#unwatched">Unwatched</a>
+        <a class="breadcrumb-item" href="#watched">Watched</a>
+        <a class="breadcrumb-item">Unwatched</a>
+
+        <input id="stars" data-slider-id='ex1Slider' type="range" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="1" />
     </nav>
 
 
@@ -45,24 +56,24 @@
         <div class="row">
 
 
-    <!--<div id="cards" class="container">-->
-        <!--<div class="row">-->
+            <!--<div id="cards" class="container">-->
+            <!--<div class="row">-->
             <!--<div class="col-sm">-->
-                <!--1 of 3-->
+            <!--1 of 3-->
             <!--</div>-->
             <!--<div class="col-sm">-->
-                <!--1 of 3-->
+            <!--1 of 3-->
             <!--</div>-->
             <!--<div class="col-sm">-->
-                <!--1 of 3-->
+            <!--1 of 3-->
             <!--</div>-->
             <!--<div class="col-sm">-->
-                <!--1 of 3-->
+            <!--1 of 3-->
             <!--</div>-->
-        <!--</div>-->
+            <!--</div>-->
 
-        
-  <!--       <div class="row">
+
+            <!--       <div class="row">
             <div class="col-sm">
                 1 of 3
             </div>
@@ -76,53 +87,51 @@
                 1 of 3
             </div>
         </div>  -->
-    </div>
+        </div>
 
-    <!--login modal-->
-    <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="text-center"><img src="images/logo.png" class="img-circle"><br></h2>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-                    <form class="form col-md-12 center-block">
-                        <!--<div class="form-group">-->
+        <!--login modal-->
+        <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="text-center"><img src="images/logo.png" class="img-circle"><br></h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form col-md-12 center-block">
+                            <!--<div class="form-group">-->
                             <!--<input type="text" class="form-control input-lg" placeholder="Email">-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
                             <!--<input type="password" class="form-control input-lg" placeholder="Password">-->
-                        <!--</div>-->
-                        <div class="form-group">
-                            <button id="modal-signin-btn" class="btn btn-primary btn-lg btn-block">Sign In | Register</button>
+                            <!--</div>-->
+                            <div class="form-group">
+                                <button id="modal-signin-btn" class="btn btn-primary btn-lg btn-block">Sign In | Register</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <input type="range" id="slideRange" value="100"> -->
+                    <div class="modal-footer">
+                        <div class="col-md-12">
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <div class="col-md-12">
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <footer>
-    <div id="footer" class="card-footer text-muted">
-        © 2017 Movie Finder
-    </div>
-    </footer>
+        <footer>
+            <div id="footer" class="card-footer text-muted">
+                © 2017 Movie Finder
+            </div>
+        </footer>
 
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.0.4/fuse.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.0.4/fuse.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
-<script src="dist/app.js"></script>
+        <script src="dist/app.js"></script>
 </body>
-</html>
 
+</html>
