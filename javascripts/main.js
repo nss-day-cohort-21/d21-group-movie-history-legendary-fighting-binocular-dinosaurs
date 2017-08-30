@@ -23,12 +23,10 @@ $('#loginbutton').on("click",()=>{
 	Firebase.logInGoogle();
 });
 
-
-
 //send selected movie to firebase
 $(document).on("click",".addtowatchlist",(e)=>{
     if (Firebase.currentUsers()!== null) {
-    let myMovie = $(e.currentTarget).attr("movieid");
+        let myMovie = $(e.currentTarget).attr("movieid");
         console.log("myMovie", myMovie);
         requests.singleMovieSearch(myMovie).then((item)=>{
             let mymovieobj = item;
@@ -47,6 +45,8 @@ $(document).on("click",".addtowatchlist",(e)=>{
             Firebase.pushMovieObjToFirebase(mymovieobj);
 
         });
+    } else {
+        window.alert('Please log in to add watchlist');
     }
 });
 
@@ -69,9 +69,18 @@ $(document).on("click",".addtowatchlist",(e)=>{
 // });
 
 $(document).on("click", ".deleteMovie", function(event) {
-    let fbID = $(this).attr("data-delete-id");
-            Firebase.deleteMovie($(this).attr("data-delete-id"));
+    let disableMovie = document.getElementById("disableMovie");
 
+    if (Firebase.currentUsers() !== null) {
+        // debugger;
+        disableMovie.disabled = false;
+        let fbID = $(this).attr("data-delete-id");
+        Firebase.deleteMovie($(this).attr("data-delete-id"));
+    } else {
+        $("#fireBaseid").hide();
+        disableMovie.disabled = true;
+        window.alert('Please log in to delete');
+    }
 });
 
 
@@ -85,12 +94,14 @@ $(document).on("click", ".deleteMovie", function(event) {
 //   });
 
 $(document).on("click",".stars",(e)=>{
+    let disableStars = document.getElementById("rateYo");
     let startarget =  e.currentTarget;
     let rating = $(startarget).rateYo("rating")*2;
     let fbID = $(startarget).attr("data-stars-id");
 
     if (Firebase.currentUsers()!== null) {
-    let myMovieId = $(e.currentTarget).attr("movieid");
+        // disableStars.disabled = false;
+        let myMovieId = $(e.currentTarget).attr("movieid");
         // console.log("myMovieId", myMovieId);
         requests.singleMovieSearch(myMovieId)
         .then((item)=> {
@@ -109,6 +120,10 @@ $(document).on("click",".stars",(e)=>{
         }).then((mymovieobj) => {
             Firebase.editMovieAndPushToFB(mymovieobj, fbID);
         });
+    } else {
+        $("#id").hide();
+        // disableStars.disabled = true;
+        window.alert('Please log in to rate');
     }
 });
 

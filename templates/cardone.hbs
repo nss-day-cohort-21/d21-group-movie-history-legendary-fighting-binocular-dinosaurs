@@ -8,9 +8,8 @@
                 </a>
                     <h5 class="movie-date">Release Date: {{release_date}}</h5>
                     <button type="button" class="addtowatchlist btn btn-success" id="watched--{{id}}" movieid="{{id}}"><a href="#">Add To WatchList</a></button>
-                    <button type="button" class="deleteMovie btn btn-success" id="disableMovie" data-delete-id="{{fireBaseid}}"><a href="#">Delete Movie</a></button>
-                        <div class="stars" id="rateYo{{id}}" movieid="{{id}}" data-stars-id="{{fireBaseid}}"></div>
-
+                    {{!-- <button type="button" class="deleteMovie btn btn-success" id="deleteMovie" data-delete-id="{{fireBaseid}}"><a href="#">Delete Movie</a></button> --}}
+                        {{!-- <div class="stars" id="rateYo{{id}}" movieid="{{id}}" data-stars-id="{{fireBaseid}}"></div> --}}
 
         </div>
         <button type="button" class="btn btn-success" movieid="{{id}}" data-toggle="collapse" data-parent="#accordion" href="#collapse{{id}}" aria-expanded="true" aria-controls="collapse{{id}}"><a href="#">More Info</button>
