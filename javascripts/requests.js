@@ -13,7 +13,9 @@ var options = {
 
 var template = require('./dombuilder');
 var firebase = require('./firebase.js');
+
 function initialSearch(searchInput) {
+    // debugger;
 	return new Promise((resolve,reject)=> {
 
         $.ajax({
@@ -62,6 +64,7 @@ $("#searchInput").on("keydown",(e)=>{
         e.preventDefault();
         let search = $("#searchInput").val();
         initialSearch(search).then((data)=>{
+            // console.log(data);
             carddata = data;
             data.forEach((item,index)=>{
 
@@ -76,7 +79,13 @@ $("#searchInput").on("keydown",(e)=>{
 
                         for (var i = 0; i<5;i++) {
                             // console.log("cast members", carddata[index].cast[i]);
-                              template.domBuilder(carddata);
+                            template.domBuilder(carddata);
+
+                            if (firebase.currentUsers()!== null) {
+                                $('.stars').show();
+                            } else {
+                                $('.stars').hide();
+                            }
                         }
 
                     }

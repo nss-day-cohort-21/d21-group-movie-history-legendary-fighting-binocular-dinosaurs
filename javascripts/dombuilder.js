@@ -1,6 +1,7 @@
 'use strict';
 
 var cards = require('../templates/cards.hbs');
+var cardone = require('../templates/cardone.hbs');
 var request = require("./requests.js");
 
 
@@ -18,9 +19,13 @@ function domBuilder(movie){
        movieobj.id.push(data.id);
        movieobj.posterpath.push(data.poster_path);
   });
-
-// }
-       // console.log("obj from domBuilder", movie);
+//   movieobj.push(movieobj);
+//   console.log ("movieobj push populatepagebefore", movieobj);
+//   domBuilder.populatePageBeforeTracked(movieobj);
+    //    debugger;
+    //    console.log('movieobj: ', movieobj);
+// }   //    debugger;
+    //    console.log("obj from domBuilder", movie);
       $(".row").html('');
       movie.forEach((item,index) => {
      // console.log("castiss?", item.cast);
@@ -47,5 +52,14 @@ function domBuilder(movie){
       });
 
 }
+
+
+// function populatePageBeforeTracked(arrayOfMovies) {
+// 	// console.log ("arRaY", arrayOfMovies);
+//     let ourDiv = document.getElementById("forHandlebarsInsert");
+//     ourDiv.innerHTML = initialMovieTemplate(arrayOfMovies);
+//     // $("#attraction-column").append(newDiv);
+// }
+
 
 module.exports = {domBuilder};

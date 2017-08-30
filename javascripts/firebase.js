@@ -80,11 +80,11 @@ function logOut() {
 }
 
 firebase.auth().onAuthStateChanged(function(user) {
-    console.log("onAuthStateChanged", user);
+    // console.log("onAuthStateChanged", user);
     if (user){
         currentUser = user.uid;
         handlers.addPhotoAfterLogin(user.photoURL);
-        console.log(handlers);
+        // console.log('onAuthstateChange handlers: ', handlers);
         displayName = user.displayName;
         email = user.email;
         userDetails();
